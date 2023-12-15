@@ -2,7 +2,9 @@ import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 // import routes from './routes'
 import PublicNavBar from './web/PublicNavBar';
+import NavBarWeb from './web/NavBarWeb';
 import Error404 from './web/NotFound';
+import Pricing from './web/Pricing';
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -14,8 +16,9 @@ import Error404 from './web/NotFound';
 const auxiliar = [];
 const routes = auxiliar.concat(
 	//aqui se agregan las rutas de los archivos o paginas del sistema
-  PublicNavBar,
-  Error404
+  NavBarWeb,
+  Error404,
+  Pricing
 
 );
 export default route(function (/* { store, ssrContext } */) {

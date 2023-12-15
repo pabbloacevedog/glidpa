@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-copy">
+    <div class="hero-inner row">
+      <div class="hero-copy col-md-6 col-xs-10 q-pa-sm">
         <span class="hero-trial">7 Días de prueba gatis</span>
         <h1>La mejor manera de automatizar tu empresa</h1>
         <p>Contrata tu propio bot co IA para automatizar tus consultas</p>
@@ -23,7 +23,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-image">
+      <div class="hero-image col-md-6 col-xs-10 q-pa-sm">
         <img src="@/assets/hero-robot-black-removebg.png" alt="Heroic Robot" />
       </div>
     </div>
@@ -70,10 +70,17 @@ export default {
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.5vw;
   margin: 0.5rem 0;
+  line-height: 2.5rem;
 }
-
+@media (max-width: 600px) {
+    .hero h1 {
+      font-size: 2.5vw;
+      margin: 0.5rem 0;
+      line-height: 2.5rem;
+  }
+}
 .hero p {
   margin-bottom: 2rem;
 }

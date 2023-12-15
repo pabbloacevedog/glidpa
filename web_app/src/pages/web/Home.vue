@@ -8,6 +8,7 @@
     <JoinCommunity />
     <Testimonials />
     <GetStarted />
+    <Bottom />
   </div>
 </template>
 
@@ -19,7 +20,7 @@ import Efficiency from './sections/Efficiency.vue';
 import JoinCommunity from './sections/JoinCommunity.vue';
 import Testimonials from './sections/Testimonials.vue';
 import GetStarted from './sections/GetStarted.vue';
-
+import Bottom from './sections/Bottom.vue';
 export default {
   components: {
     Presentation,
@@ -28,7 +29,8 @@ export default {
     Efficiency,
     JoinCommunity,
     Testimonials,
-    GetStarted
+    GetStarted,
+    Bottom
   }
 };
 </script>
