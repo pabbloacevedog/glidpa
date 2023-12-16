@@ -1,0 +1,118 @@
+<!-- eslint-disable vue/multi-word-component-names -->
+<template>
+    <q-page class="pricing-page bg-dark text-white">
+        <div class="q-mb-lg column items-center">
+            <div class="text-h2 q-mb-md choose-plan">Elige tu plan </div>
+            <div class="text-h5 q-mb-md">y empieza a automatizar tus reservas con IA</div>
+        </div>
+        <div class="row q-gutter-md plans">
+            <div class="col" v-for="plan in plans" :key="plan.title">
+                <PriceCard :plan="plan" />
+            </div>
+        </div>
+    </q-page>
+</template>
+
+<script>
+import PriceCard from '@components/PriceCard.vue';
+export default {
+    components: {
+        PriceCard
+    },
+    data() {
+        return {
+            plans: [
+                {
+                    id: 0,
+                    title: 'Base',
+                    price: '19.990',
+                    description: 'Peerfecto para pymes que solo necesiten automatizar y aumeentar sus citas',
+                    features: [
+                        { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
+                        { icon: 'edit_calendar', description: 'Permite que hasta 40 clientes puedan reservar citas fácilmente cada mes.' },
+                        { icon: 'precision_manufacturing', description: 'Personaliza tu propio bot con hasta 20 preguntas sobre tu empresa' },
+                    ],
+                    class:'secondary'
+                },
+                {
+                    id: 1,
+                    title: 'Profesional',
+                    price: '49.990',
+                    description: 'Perfecto para pymes que necesiten su pagina web, autorizar y aumentar sus citas',
+                    features: [
+                        { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
+                        { icon: 'edit_calendar', description: 'Permite que hasta 90 clientes puedan reservar citas fácilmente cada mes.' },
+                        { icon: 'precision_manufacturing', description: 'Personaliza tu propio bot con hasta 30 preguntas sobre tu empresa' },
+                        { icon: 'web', description: 'Landing page personalizable para que puedas mostrar tus servicios.' },
+                        { icon: 'collections', description: 'Muestra lo mejor de tu empresa con una galería con 15 fotos.' }
+                    ],
+                    class:'primary'
+                },
+                {
+                    id: 2,
+                    title: 'Premium',
+                    price: '99.990',
+                    description: 'Especial para pymes con harto flujo de clientes que neceiten autorizar citas',
+                    features: [
+                    { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
+                        { icon: 'edit_calendar', description: 'Permite que hasta 200 clientes puedan reservar citas fácilmente cada mes.' },
+                        { icon: 'precision_manufacturing', description: 'Personaliza tu propio bot con hasta 40 preguntas sobre tu empresa' },
+                        { icon: 'web', description: 'Landing page personalizable para que puedas mostrar tus servicios.' },
+                        { icon: 'collections', description: 'Muestra lo mejor de tu empresa con una galería con 30 fotos.' }
+                    ],
+                    class: 'accent'
+                },
+                {
+                    id: 3,
+                    title: 'Platinum',
+                    price: '199.990',
+                    description: 'Especial para medianas empresas con muchos cliente que necesitan automatizar la reserva de citas',
+                    features: [
+                        { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
+                        { icon: 'edit_calendar', description: 'Permite que hasta 500 clientes puedan reservar citas fácilmente cada mes.' },
+                        { icon: 'precision_manufacturing', description: 'Personaliza tu propio bot con hasta 50 preguntas sobre tu empresa' },
+                        { icon: 'web', description: 'Landing page personalizable para que puedas mostrar tus servicios.' },
+                        { icon: 'collections', description: 'Muestra lo mejor de tu empresa con una galería con 50 fotos.' }
+                    ],
+                    class:'info'
+                },
+            ]
+        };
+    }
+};
+</script>
+
+<style scoped>
+.pricing-page {
+    background-color: #000;
+    color: #000000;
+}
+
+.q-stepper {
+    background-color: #000;
+}
+
+.q-card {
+    background-color: #000;
+    border-radius: 25px;
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+}
+
+.q-card-section {
+    text-align: center;
+}
+.choose-plan {
+	text-transform: uppercase;
+	background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.q-page {
+    padding: 2em;
+}
+@media (min-width: 1200px) {
+    .plans {
+        padding: 0 12% 0 12%;
+  }
+}
+</style>
