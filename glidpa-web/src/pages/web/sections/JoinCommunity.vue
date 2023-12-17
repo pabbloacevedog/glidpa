@@ -3,7 +3,7 @@
     <div class="section section-five">
         <div class="row content bg-dark">
             <div class="col-6 image-container">
-                <img src="@/assets/join-community-robot.png" alt="Join Our Community Robot">
+                <img src="@/assets/glidpa-read.png" alt="Join Our Community Robot">
                 <div class="empezar">
                     <h2>Cómo unirse a nuestra comunidad</h2>
                     <p>Sólo 3 sencillos pasos para optimizar las operaciones de su empresa.</p>
@@ -80,7 +80,7 @@ export default {
 .image-container {
     flex-shrink: 0;
 }
-
+/* 
 .image-container img {
     width: 40vw;
     height: auto;
@@ -88,7 +88,7 @@ export default {
     position: absolute;
     top: 330vh;
     height: auto;
-}
+} */
 
 /* .steps-container {
   max-width: 600px;

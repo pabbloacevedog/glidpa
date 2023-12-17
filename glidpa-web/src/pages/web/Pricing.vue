@@ -2,11 +2,11 @@
 <template>
     <q-page class="pricing-page bg-dark text-white">
         <div class="q-mb-lg column items-center">
-            <div class="text-h2 q-mb-md choose-plan">Elige tu plan </div>
-            <div class="text-h5 q-mb-md">y empieza a automatizar tus reservas con IA</div>
+            <div class="title-elige q-mb-xs texto-primary">Elige tu plan </div>
+            <div class="text-h5 q-mb-xs" style="text-align: center;">y empieza a automatizar tus reservas con IA</div>
         </div>
         <div class="row q-gutter-md plans">
-            <div class="col" v-for="plan in plans" :key="plan.title">
+            <div class="col col-xs-12 col-md-3" v-for="plan in plans" :key="plan.title">
                 <PriceCard :plan="plan" />
             </div>
         </div>
@@ -26,7 +26,7 @@ export default {
                     id: 0,
                     title: 'Base',
                     price: '19.990',
-                    description: 'Peerfecto para pymes que solo necesiten automatizar y aumeentar sus citas',
+                    description: 'Perfecto para pymes que solo necesiten automatizar y aumeentar sus citas',
                     features: [
                         { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
                         { icon: 'edit_calendar', description: 'Permite que hasta 40 clientes puedan reservar citas fácilmente cada mes.' },
@@ -97,15 +97,11 @@ export default {
     border-radius: 25px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-
+.title-elige {
+ font-size: 3rem;
+}
 .q-card-section {
     text-align: center;
-}
-.choose-plan {
-	text-transform: uppercase;
-	background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 }
 .q-page {
     padding: 2em;

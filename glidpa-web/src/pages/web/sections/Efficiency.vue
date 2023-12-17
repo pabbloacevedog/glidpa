@@ -10,7 +10,7 @@
         </div>
         <div class="image-container col-md-6 col-xs-10 q-pa-sm">
             <!-- Asegúrate de que la ruta de la imagen sea correcta -->
-            <img src="@/assets/cost-saving-robot-2.png" alt="Cost Saving Robot">
+            <img src="@/assets/glidpa-hi.png" alt="Cost Saving Robot">
         </div>
     </div>
 </template>

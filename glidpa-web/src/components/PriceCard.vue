@@ -24,21 +24,24 @@
 </template>
 
 <script>
-export default {
-    name: 'PriceCard',
-    props: {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'PriceCard',
+  props: {
         plan: {
             type: Object,
             required: true,
         },
     },
-};
+});
 </script>
 
 <style scoped>
 .bg-black {
     background-color: #000;
     border-radius: 25px;
+    margin-right: 10px;
 }
 
 .title-plan {

@@ -2,8 +2,9 @@
 <template>
   <div>
     <Presentation />
+    <Section2 />
+    <Section3 />
     <Intro />
-    <SafeWithUs />
     <Efficiency />
     <JoinCommunity />
     <Testimonials />
@@ -15,17 +16,19 @@
 <script>
 import Presentation from './sections/Presentation.vue';
 import Intro from './sections/Intro.vue';
-import SafeWithUs from './sections/SafeWithUs.vue';
 import Efficiency from './sections/Efficiency.vue';
 import JoinCommunity from './sections/JoinCommunity.vue';
 import Testimonials from './sections/Testimonials.vue';
 import GetStarted from './sections/GetStarted.vue';
 import Bottom from './sections/Bottom.vue';
+import Section2 from './sections/Section2.vue';
+import Section3 from './sections/Section3.vue';
 export default {
   components: {
     Presentation,
+    Section2,
+    Section3,
     Intro,
-    SafeWithUs,
     Efficiency,
     JoinCommunity,
     Testimonials,
