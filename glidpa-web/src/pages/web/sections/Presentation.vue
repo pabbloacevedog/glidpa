@@ -7,8 +7,8 @@
                 <h2 class="texto-primary title-presentation">La mejor manera de automatizar tu empresa</h2>
                 <span class="hero-trial">Contrata tu propio bot con IA para automatizar tus consultas</span>
                 <div class="hero-ctas">
-                    <q-btn outline rounded color="primary" label="Pruebalo gratis" />
-                    <q-btn rounded color="primary" label="Más sobre Glidpa IA" />
+                    <q-btn size="lg" outline rounded color="primary" label="Pruebalo gratis" class="btn-prrestentation" />
+                    <q-btn size="lg" rounded color="primary" label="Más sobre Glidpa IA" class="btn-prrestentation" />
                 </div>
                 <div class="trusted-by">
                     Di adios a la tediosa forma de hacer reservas manualmente, deja que Glidpa lo haga por ti y ten tu proio
@@ -52,96 +52,107 @@ export default {
     justify-content: space-between;
 }
 
-.hero-trial {
-    display: block;
-    /* margin-bottom: .5rem; */
-    font-weight: bold;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-}
+@media (min-width: 1201px) {
+    .hero-trial {
+        display: block;
+        /* margin-bottom: .5rem; */
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
 
-.hero h2 {
-    line-height: 3.5rem;
-}
+    .title-presentation {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 7rem;
+        line-height: 7rem;
+    }
 
-@media (max-width: 600px) {
-    .hero h2 {
-        line-height: 3.5rem;
+    .trusted-by {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+    }
+    .btn-prrestentation {
+        padding: 0 10%;
+        margin-right: 2%;
     }
 }
 
-.hero p {
-    margin-bottom: 2rem;
+@media (max-width: 1200px) {
+    .hero-trial {
+        display: block;
+        /* margin-bottom: .5rem; */
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+
+    .title-presentation {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .trusted-by {
+        margin-top: 2rem;
+    }
+
+    .btn-prrestentation {
+        padding: 0 5%;
+        margin-right: 2%;
+    }
+
+    .trusted-by {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+    }
 }
 
-.hero-ctas {
-    display: flex;
-    gap: 1rem;
-}
-
-.btn {
-    padding: 0.8rem 2rem;
-    cursor: pointer;
-    border: none;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary {
-    background-color: #fff;
-    color: #000;
-}
-
-.btn-primary:hover {
-    background-color: #4f4f4f;
-    color: #fff;
-}
-
-.btn-secondary {
-    background-color: transparent;
-    color: #fff;
-    border: 1px solid #fff;
-}
-
-.btn-secondary:hover {
-    background-color: #fff;
-    color: #000;
-}
-
-.trusted-by {
-    margin-top: 2rem;
-}
-
-.logos {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 1rem;
-}
-
-.logos span {
-    background: #fff;
-    /* Replace with actual logos */
-    display: inline-block;
-    padding: 0.5rem 1rem;
-    text-align: center;
-}
-
-.hero-image img {
-    max-width: 90%;
-    height: auto;
-}
-
-.title-presentation {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
 
 @media (max-width: 600px) {
+    .hero-trial {
+        display: block;
+        /* margin-bottom: .5rem; */
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        text-align: center;
+    }
+
     .title-presentation {
         margin-top: 0px;
         margin-bottom: 0px;
         text-align: center;
     }
 
+    .trusted-by {
+        margin-top: 2rem;
+    }
+
+    .hero-ctas {
+        margin-right: 5%;
+        margin-bottom: 5%;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .trusted-by {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    .btn-prrestentation {
+        padding: 0 20%;
+        margin-bottom: 5%;
+    }
+}
+
+
+
+.hero-image img {
+    max-width: 90%;
+    height: auto;
 }</style>

@@ -1,13 +1,12 @@
 <!-- eslint-disable vue/no-parsing-error -->
 <template>
-    <q-card class="bg-black">
+    <q-card class="bg-card">
         <q-card-section>
-
             <div :class="'text-' + plan.class + ' text-h6 title-plan'">{{ plan.title }}</div>
-            <div class="text-caption q-mb-xs">{{ plan.description }}</div>
+            <div class="q-mb-xs">{{ plan.description }}</div>
             <div class="q-mb-xs flex items-center justify-center">
                 <span :class="'text-' + plan.class + ' signo'">$</span>
-                <span class="price">{{ plan.price }}</span>
+                <span class="price f_monserrat_l">{{ plan.price }}</span>
             </div>
 
             <q-list dense>
@@ -38,14 +37,18 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.bg-black {
-    background-color: #000;
-    border-radius: 25px;
-    margin-right: 10px;
+.bg-card {
+    background: rgb(6 0 0 / 50%) !important;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(20px);
+    border: 0.5px solid rgb(22 10 26 / 92%);
+    border-radius: 35px !important;
+    margin: 5px !important;
 }
 
 .title-plan {
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .price {

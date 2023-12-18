@@ -13,8 +13,8 @@
                 </q-toolbar-title>
                 <nav class=" navbar" v-if="!$q.platform.is.mobile">
                     <div class="nav-links">
-                        <a href="#pricing" class="nav-link texto-primary">Pecios</a>
-                        <a href="#about-us" class="nav-link texto-primary">Sobrer Nosotros</a>
+                        <a href="#pricing" class="nav-link texto-primary">Planes</a>
+                        <a href="#about-us" class="nav-link texto-primary">Sobre Nosotros</a>
                         <a href="#contact" class="nav-link texto-primary">Contacto</a>
                     </div>
                     <div class="auth-links">

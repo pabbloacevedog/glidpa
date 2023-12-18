@@ -2,9 +2,9 @@
 <template>
     <q-page class="section2-page text-white">
         <div class="column row items-center">
-            <div class="title-elige q-mb-xs texto-primary col-12">Glidpa usa tecnología avanzada con inteligencia artificial
+            <div class="title-section q-mb-xs texto-primary col-12">Glidpa usa tecnología avanzada con inteligencia artificial
             </div>
-            <div class="text-h5 q-mb-xs col-8 text-description">para automatizar la reserva de citas en tu empresa. Cuenta
+            <div class="q-mb-xs col-8 description-section">para automatizar la reserva de citas en tu empresa. Cuenta
                 con tu propia agenda, una landing page personalizada con una galería de fotos para exhibir tus productos y
                 servicios, y tu propio bot personalizado</div>
         </div>
