@@ -5,7 +5,7 @@
             <q-toolbar class="bg-black text-white">
                 <q-btn dense flat round icon="menu" @click="drawer = !drawer" v-if="$q.platform.is.mobile" />
 
-                <q-toolbar-title @click="redirigir" style="padding-left: 3%;">
+                <q-toolbar-title @click="redirigir" style="padding-left: 3%;" class="cursor-pointer" >
                     <q-avatar>
                         <img src="@/assets/logo.png">
                     </q-avatar>
@@ -18,8 +18,8 @@
                         <a href="#contact" class="nav-link texto-primary">Contacto</a>
                     </div>
                     <div class="auth-links">
-                        <q-btn outline rounded color="primary" label="Iniciar Sesión" />
-                        <q-btn rounded color="primary" label="Únete" style="padding: 0 30px;" />
+                        <q-btn to="/login" outline rounded color="primary" label="Iniciar Sesión" />
+                        <q-btn to="/signup" rounded color="primary" label="Únete" style="padding: 0 30px;" />
                     </div>
                 </nav>
             </q-toolbar>

@@ -3,12 +3,14 @@
     <div class="section row section-four">
         <div class="content col-md-7 col-xs-12 q-pa-sm">
             <h2 class="texto-primary title-section ">Ahorro de costos de manera inteligente</h2>
-            <div class="q-mb-xs col-8 description-section ">Una potente herramienta que te ayuda a reducir gastos y a ahorrar dinero.
-                Según nuestros usuarios, con tan solo un cliente que reserve una cita a través de Glidpa IA es suficiente para cubrir el costo del servicio; todo lo demás representa ganancias para nuestros usuarios
+            <div class="q-mb-xs col-8 description-section ">Una potente herramienta que te ayuda a reducir gastos y a
+                ahorrar dinero.
+                Según nuestros usuarios, con tan solo un cliente que reserve una cita a través de Glidpa IA es suficiente
+                para cubrir el costo del servicio; todo lo demás representa ganancias para nuestros usuarios
             </div>
-                <div class="q-mt-lg column items-center">
-            <q-btn rounded color="primary" label="Ver precios" />
-        </div>
+            <div class="q-mt-lg column items-center">
+                <q-btn rounded color="primary" label="Ver precios" />
+            </div>
         </div>
         <div class="image-container col-md-5 col-xs-12 q-pa-sm">
             <!-- Asegúrate de que la ruta de la imagen sea correcta -->
@@ -42,6 +44,7 @@ export default {
     text-align: center;
     line-height: 2.75rem;
 }
+
 .btn-primary:hover {
     background-color: #444;
 }
@@ -54,10 +57,10 @@ export default {
 .image-container img {
     max-width: 100%;
     height: auto;
-    border-radius: 30px !important;
+    border-radius: 50px !important;
 }
+
 .text-description {
     text-align: center;
     font-size: 1.4rem;
-}
-</style>
+}</style>

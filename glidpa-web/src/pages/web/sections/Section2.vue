@@ -170,6 +170,7 @@ export default {
 .image-think {
     max-width: 90%;
     height: auto;
+    border-radius: 50px !important;
 }
 
 .text-description {

@@ -4,7 +4,8 @@ export default [
         component: () => import('layouts/NavBarWeb.vue'),
         children: [
             { path: '', component: () => import('pages/web/Home.vue') },
-            { path: '/pricing', component: () => import('pages/web/Pricing.vue') }
+            { path: '/pricing', component: () => import('pages/web/Pricing.vue') },
+            // { path: '/login', component: () => import('pages/LoginPage.vue') },
         ]
     },
 ]

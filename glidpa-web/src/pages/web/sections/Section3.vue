@@ -48,7 +48,7 @@ export default {
     max-width: 100%;
     height: auto;
 
-    border-radius: 30px !important;
+    border-radius: 50px !important;
 }
 .text-description {
     text-align: center;

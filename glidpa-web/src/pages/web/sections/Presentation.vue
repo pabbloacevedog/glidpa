@@ -155,4 +155,5 @@ export default {
 .hero-image img {
     max-width: 90%;
     height: auto;
+    border-radius: 30px;
 }</style>

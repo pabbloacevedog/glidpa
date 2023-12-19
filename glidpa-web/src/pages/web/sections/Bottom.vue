@@ -40,7 +40,8 @@
                 </div>
             </div>
         </div>
-        <q-tabs no-caps class="text-white" v-model="tab">
+        <q-separator inset color="primary"/>
+        <q-tabs no-caps class="text-white q-mt-lg" v-model="tab">
             <q-tab class="text-white icons" name="facebook" icon="fa-brands fa-facebook" />
             <q-tab class="text-white icons" name="instagram" icon="fa-brands fa-instagram" />
             <q-tab class="text-white icons" name="whatsapp" icon="fa-brands fa-whatsapp" />
