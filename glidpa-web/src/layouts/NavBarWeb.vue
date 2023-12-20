@@ -5,7 +5,13 @@
             <q-toolbar class="bg-black text-white">
                 <q-btn dense flat round icon="menu" @click="drawer = !drawer" v-if="$q.platform.is.mobile" />
 
-                <q-toolbar-title @click="redirigir" style="padding-left: 3%;" class="cursor-pointer" >
+                <q-toolbar-title @click="redirigir" style="padding-left: 3%;" class="cursor-pointer" v-if="!$q.platform.is.mobile" >
+                    <q-avatar>
+                        <img src="@/assets/logo.png">
+                    </q-avatar>
+                    Glidpa IA
+                </q-toolbar-title>
+                <q-toolbar-title @click="redirigir" class="cursor-pointer row justify-center" v-if="$q.platform.is.mobile" style="padding-left: 0%; padding-right: 10%;">
                     <q-avatar>
                         <img src="@/assets/logo.png">
                     </q-avatar>

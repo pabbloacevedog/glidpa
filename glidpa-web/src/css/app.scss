@@ -600,9 +600,10 @@ body {
 
 @media (max-width: 600px) {
     .description-section {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         text-align: center;
         color: #fff;
+        padding: 0 8%;
     }
     .title-section {
         font-size: 2rem;
@@ -610,4 +611,7 @@ body {
         line-height: 2.75rem;
         text-align: center;
     }
+}
+.q-field__label {
+    padding-left: 10px;
 }

@@ -5,7 +5,7 @@ export default [
         children: [
             { path: '', component: () => import('pages/web/Home.vue') },
             { path: '/pricing', component: () => import('pages/web/Pricing.vue') },
-            // { path: '/login', component: () => import('pages/LoginPage.vue') },
+            { path: '/contact', component: () => import('pages/web/Contact.vue') },
         ]
     },
 ]

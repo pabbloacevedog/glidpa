@@ -1,15 +1,17 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="section row section-three">
+    <div class="section row section-three q-mt-md">
         <div class="image-container col-md-7 col-xs-12 q-pa-sm">
             <img src="@/assets/security.jpeg" alt="Data Security">
         </div>
-        <div class="content col-md-5 col-xs-12 q-pa-sm" >
+        <div class="content col-md-5 col-xs-12 q-pa-sm">
             <h2 class="texto-primary title-section">Tu trabajo está completamente seguro con nosotros</h2>
-            <div class="q-mb-xs col-8 description-section ">Valoramos profundamente la seguridad de tus datos, por lo que empleamos avanzados protocolos de cifrado para proteger tus archivos almacenados en la nube. Puedes confiar en que tus datos están resguardados de manera segura con nosotros</div>
+            <div class="q-mb-xs col-8 description-section ">Valoramos profundamente la seguridad de tus datos, por lo que
+                empleamos avanzados protocolos de cifrado para proteger tus archivos almacenados en la nube. Puedes confiar
+                en que tus datos están resguardados de manera segura con nosotros</div>
             <div class="q-mt-lg column items-center">
-            <q-btn rounded color="primary" label="Más sobre Glidpa IA" />
-        </div>
+                <q-btn rounded color="primary" label="Más sobre Glidpa IA" />
+            </div>
         </div>
     </div>
 </template>
@@ -39,6 +41,7 @@ export default {
     text-align: center;
     line-height: 2.75rem;
 }
+
 .image-container {
     flex-shrink: 0;
     padding: 2rem;
@@ -50,8 +53,18 @@ export default {
 
     border-radius: 50px !important;
 }
+
 .text-description {
     text-align: center;
     font-size: 1.4rem;
 }
-</style>
+
+@media (max-width: 600px) {
+    .section-three {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #000;
+        color: #fff;
+    }
+}</style>

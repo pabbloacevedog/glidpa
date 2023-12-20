@@ -3,16 +3,16 @@ import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { getMainDefinition } from '@apollo/client/utilities';
 // import VueApollo from 'vue-apollo'
-import fetch from 'node-fetch'
+// import fetch from 'node-fetch'
 import { createUploadLink } from 'apollo-upload-client'
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 
 
-const httpLink = createUploadLink({ uri: process.env.API_URL, fetch: fetch })
+const httpLink = createUploadLink({ uri: import.meta.env.VITE_API_URL})
 const wsLink = new GraphQLWsLink(
     createClient({
-        url: process.env.API_WS_URL,
+        url: import.meta.env.VITE_API_WS_URL,
         options: {
             reconnect: true,
         },
@@ -57,7 +57,7 @@ export const terminatingLink = split(
 );
 
 // const link = ApolloLink.from([terminatingLink]);
-console.log(process.env.NODE_ENV)
+console.log(import.meta.env.VITE_NODE_ENV)
 const apolloClient = new ApolloClient({
     // link,
     link: ApolloLink.from([

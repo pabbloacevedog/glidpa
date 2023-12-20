@@ -4,6 +4,7 @@ import { createRouter, createMemoryHistory, createWebHistory, createWebHashHisto
 import NavBarWeb from './web/NavBarWeb';
 import Error404 from './web/NotFound';
 import Login from './gen/Login';
+import SignUp from './gen/SignUp';
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -17,7 +18,8 @@ const routes = auxiliar.concat(
 	//aqui se agregan las rutas de los archivos o paginas del sistema
   NavBarWeb,
   Error404,
-  Login
+  Login,
+  SignUp
 
 );
 export default route(function (/* { store, ssrContext } */) {

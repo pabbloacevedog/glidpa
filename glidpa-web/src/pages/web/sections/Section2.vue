@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <q-page class="section2-page text-white">
+    <q-page class="section2-page text-white ">
         <div class="column row items-center">
             <div class="title-section q-mb-xs texto-primary col-12">Glidpa usa tecnología avanzada con inteligencia artificial
             </div>
@@ -8,7 +8,7 @@
                 con tu propia agenda, una landing page personalizada con una galería de fotos para exhibir tus productos y
                 servicios, y tu propio bot personalizado</div>
         </div>
-        <div class="row">
+        <div class="row q-mt-md">
             <div class="col row col-xs-12 col-md-3" v-if="!$q.platform.is.mobile">
                 <div class="col-12 container-left">
 
