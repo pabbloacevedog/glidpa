@@ -6,13 +6,14 @@
             <div class="q-mb-xs text-list">{{ plan.description }}</div>
             <div class="q-mb-xs flex items-center justify-center">
                 <span :class="'text-' + plan.class + ' signo'">$</span>
-                <span class="price f_monserrat_l">{{ plan.price }}</span>
+                <span class="price f_monserrat_l q-pr-xs">{{ plan.price }}</span>
+                <span :class="'text-' + plan.class + ' xmes'"> por mes</span>
             </div>
 
             <q-list dense>
                 <q-item v-for="feature in plan.features" :key="feature.description" class="list-feature">
-                    <q-icon :name="feature.icon" size="xs" :class="'text-' + plan.class + ' q-mr-sm icon-feature'" />
-                    <q-item-section class="text-list">{{ feature.description }}</q-item-section>
+                    <q-icon :name="feature.icon" size="xs" :class="'text-' + plan.class + ' q-mr-sm q-mt-xs icon-feature'" />
+                    <q-item-section class="feature-list">{{ feature.description }}</q-item-section>
                 </q-item>
             </q-list>
         </q-card-section>
@@ -47,7 +48,7 @@ export default defineComponent({
 }
 
 .title-plan {
-    font-size: 1.5rem;
+    font-size: 2rem;
     text-align: center;
 }
 
@@ -84,10 +85,13 @@ export default defineComponent({
 .list-feature {
     padding: 5px 0px;
 }
-
+.text-list {
+    min-height: 60px;
+}
 @media (min-width: 1200px) {
     .text-list {
         font-size: 1.3rem;
+        min-height: 60px;
     }
 
     .icon-feature {

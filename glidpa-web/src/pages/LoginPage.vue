@@ -16,13 +16,13 @@
 
                         </div>
                     </q-card-section>
-                    <q-card-section class="step-section">
-                        <div class="text-h2 texto-primary">
-                            Bienvenido
+                    <q-card-section class="step-section ">
+                        <div class="text-h2 texto-primary" style="text-align: center;">
+                            Bienvenido nuevamente
                         </div>
                     </q-card-section>
                     <q-card-section class="q-pt-none">
-                        <div class="text-white">
+                        <div class="text-h5 text-white" style="text-align: center;">
                             Por favor ingresa tu correo y contraseña para continuar
                         </div>
                     </q-card-section>
@@ -57,7 +57,7 @@
                             <q-btn rounded color="primary" label="Iniciar Sesión" class="btn-login" />
                         </div>
                     </q-card-actions>
-                    <q-card-actions>
+                    <!-- <q-card-actions>
                         <div class="column items-center">
                             <q-btn rounded color="white" label="Iniciar Sesióncon Gmail" class="btn-login-gmail text-black">
                                 <q-avatar size="42px">
@@ -65,7 +65,7 @@
                                 </q-avatar>
                             </q-btn>
                         </div>
-                    </q-card-actions>
+                    </q-card-actions> -->
                 </q-card>
             </transition>
         </div>

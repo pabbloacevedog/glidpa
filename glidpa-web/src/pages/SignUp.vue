@@ -63,7 +63,7 @@
                         <div :class="'text-' + selectedColor + '  q-mb-md q-ml-md url_landig'">
                             www.glidpa.com/{{ usuario }}
                         </div>
-                        <q-select  dark rounded standout dense  v-model="tipo_empresa" :options="tipos_empresas" label="Seleccione tipo de empresa" class="q-pb-lg"/>
+                        <!-- <q-select  dark rounded standout dense  v-model="tipo_empresa" :options="tipos_empresas" label="Seleccione tipo de empresa" class="q-pb-lg"/> -->
                         <q-input dark rounded standout dense v-model="password" label="Password" class="input-signup"
                             :type="isPwd ? 'password' : 'text'">
                             <template v-slot:prepend>
@@ -115,33 +115,32 @@ export default defineComponent({
         ]);
         const tipos_empresas = ref([
             {
-                label: 'Google',
-                value: 'Google',
+                label: 'Centro de estetica',
+                value: '1',
                 description: 'Search engine',
                 category: '1'
             },
             {
-                label: 'Facebook',
-                value: 'Facebook',
+                label: 'Barbería',
+                value: '2',
                 description: 'Social media',
                 category: '1'
             },
             {
-                label: 'Twitter',
-                value: 'Twitter',
+                label: 'Peluquería',
+                value: '3',
                 description: 'Quick updates',
                 category: '2'
             },
             {
-                label: 'Apple',
-                value: 'Apple',
+                label: 'Hostal',
+                value: '4',
                 description: 'iStuff',
                 category: '2'
             },
             {
-                label: 'Oracle',
-                value: 'Oracle',
-                disable: true,
+                label: 'Cabañas',
+                value: '5',
                 description: 'Databases',
                 category: '3'
             }

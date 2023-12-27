@@ -37,7 +37,7 @@ export default {
                 {
                     id: 1,
                     title: 'Profesional',
-                    price: '49.990',
+                    price: '29.990',
                     description: 'Perfecto para pymes que necesiten su página web, automatizar y aumentar sus citas',
                     features: [
                         { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
@@ -51,7 +51,7 @@ export default {
                 {
                     id: 2,
                     title: 'Premium',
-                    price: '99.990',
+                    price: '49.990',
                     description: 'Especial para pymes con harto flujo de clientes que neceiten automatizar citas',
                     features: [
                         { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
@@ -65,7 +65,7 @@ export default {
                 {
                     id: 3,
                     title: 'Platinum',
-                    price: '199.990',
+                    price: '99.990',
                     description: 'Especial para medianas empresas con muchos cliente que necesitan automatizar la reserva de citas',
                     features: [
                         { icon: 'notifications_active', description: 'Recibe automáticamente detalles de citas y comunicaciones importantes por whatsapp' },
