@@ -9,24 +9,31 @@
                 para cubrir el costo del servicio; todo lo demás representa ganancias para nuestros usuarios
             </div>
             <div class="q-mt-lg column items-center">
-                <q-btn rounded color="primary" label="Ver precios" />
+                <q-btn rounded color="primary" label="Ver precios"  @click="seePricing"/>
             </div>
         </div>
         <div class="image-container col-md-5 col-xs-12 q-pa-sm">
             <!-- Asegúrate de que la ruta de la imagen sea correcta -->
-            <img src="@/assets/ahorro.png" alt="Cost Saving Robot">
+            <img src="@/assets/ahorro.png" alt="Cost Saving Robot" >
         </div>
     </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
-    methods: {
-        tryNow() {
-            // Implementa la lógica para probar el servicio
+    setup() {
+        const router = useRouter();
+
+        const seePricing = () => {
+            // Implement your logic
+            router.push('/pricing');
+        }
+        return {
+            seePricing,
         }
     }
-};
+}
 </script>
 
 <style scoped>

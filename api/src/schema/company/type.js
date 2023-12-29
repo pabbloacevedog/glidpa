@@ -1,5 +1,5 @@
 // Imports
-import { GraphQLObjectType, GraphQLString, GraphQLUUID } from 'graphql';
+import { GraphQLObjectType, GraphQLString } from 'graphql';
 
 // Company Type
 const CompanyType = new GraphQLObjectType({
@@ -7,7 +7,7 @@ const CompanyType = new GraphQLObjectType({
 	description: 'Company Type',
 
 	fields: () => ({
-		company_id: { type: GraphQLUUID },
+		company_id: { type: GraphQLString },
 		company_name: { type: GraphQLString },
 		description_company: { type: GraphQLString },
 		company_email: { type: GraphQLString },

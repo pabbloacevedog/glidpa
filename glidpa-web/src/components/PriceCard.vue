@@ -12,19 +12,21 @@
 
             <q-list dense>
                 <q-item v-for="feature in plan.features" :key="feature.description" class="list-feature">
-                    <q-icon :name="feature.icon" size="xs" :class="'text-' + plan.class + ' q-mr-sm q-mt-xs icon-feature'" />
+                    <q-icon :name="feature.icon" size="xs"
+                        :class="'text-' + plan.class + ' q-mr-sm q-mt-xs icon-feature'" />
                     <q-item-section class="feature-list">{{ feature.description }}</q-item-section>
                 </q-item>
             </q-list>
         </q-card-section>
         <q-card-actions align="right" class="column items-center q-pb-lg">
-            <q-btn :color="plan.class + ' btn-plan'" label="Seleccionar" rounded />
+            <q-btn :color="plan.class + ' btn-plan'" label="Seleccionar" rounded @click="selectPlan(plan.id)" />
         </q-card-actions>
     </q-card>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
     name: 'PriceCard',
@@ -34,6 +36,16 @@ export default defineComponent({
             required: true,
         },
     },
+    setup() {
+        const router = useRouter();
+        const selectPlan = (id_plan) => {
+            console.log('Selected Plan ID:', id_plan); // Verificar el valor de id_plan
+            router.push('/signup/' + id_plan);
+        }
+        return {
+            selectPlan
+        }
+    }
 });
 </script>
 
@@ -85,9 +97,11 @@ export default defineComponent({
 .list-feature {
     padding: 5px 0px;
 }
+
 .text-list {
     min-height: 60px;
 }
+
 @media (min-width: 1200px) {
     .text-list {
         font-size: 1.3rem;
@@ -106,8 +120,8 @@ export default defineComponent({
         border-radius: 35px !important;
         margin: 10px !important;
     }
-    .section-plan{
+
+    .section-plan {
         padding: 10% !important;
     }
-}
-</style>
+}</style>

@@ -84,6 +84,13 @@ $warning   : #F2C037;
 .chip-plan .q-chip__icon{
     color: #000 !important;
 }
+.q-notification {
+    border-radius: 25px !important;
+    -webkit-border-radius: 25px !important;
+    -moz-border-radius: 25px !important;
+    -ms-border-radius: 25px !important;
+    -o-border-radius: 25px !important;
+}
 // $primary   : #1976D2;
 // $secondary : #26A69A;
 // $accent    : #9C27B0;

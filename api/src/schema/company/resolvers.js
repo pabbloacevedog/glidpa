@@ -1,7 +1,7 @@
 // Ejemplo de cómo se vería un resolver usando companyService
 
-import { getAllCompanies, getCompanyById, createCompany, updateCompany } from '../services/companyService';
-import { authorizeUser } from '../utils';
+import { getAllCompanies, getCompanyById, createCompany, updateCompany } from '../../services/companyService';
+import { authorizeUser } from '../../utils';
 export const companyResolver = {
 	Query: {
 		companies: async () => {

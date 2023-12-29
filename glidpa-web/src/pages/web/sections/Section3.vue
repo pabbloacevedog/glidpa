@@ -10,20 +10,27 @@
                 empleamos avanzados protocolos de cifrado para proteger tus archivos almacenados en la nube. Puedes confiar
                 en que tus datos están resguardados de manera segura con nosotros</div>
             <div class="q-mt-lg column items-center">
-                <q-btn rounded color="primary" label="Más sobre Glidpa IA" />
+                <q-btn rounded color="primary" label="Más sobre Glidpa IA" @click="seeHowItWorks" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
-    methods: {
-        tryNow() {
-            // Implement your logic for trying the service
+    setup() {
+        const router = useRouter();
+
+        const seeHowItWorks = () => {
+            // Implement your logic
+            router.push('/about-us');
+        }
+        return {
+            seeHowItWorks,
         }
     }
-};
+}
 </script>
 
 <style scoped>

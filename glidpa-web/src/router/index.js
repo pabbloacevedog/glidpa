@@ -3,8 +3,10 @@ import { createRouter, createMemoryHistory, createWebHistory, createWebHashHisto
 // import routes from './routes'
 import NavBarWeb from './web/NavBarWeb';
 import Error404 from './web/NotFound';
-import Login from './gen/Login';
-import SignUp from './gen/SignUp';
+import Login from './auth/Login.js';
+import SignUp from './auth/SignUp.js';
+//customers
+import NavBarCustomer from './customer/NavBarCustomer';
 /*
  * If not building with SSR mode, you can
  * directly export the Router instantiation;
@@ -15,27 +17,27 @@ import SignUp from './gen/SignUp';
  */
 const auxiliar = [];
 const routes = auxiliar.concat(
-	//aqui se agregan las rutas de los archivos o paginas del sistema
-  NavBarWeb,
-  Error404,
-  Login,
-  SignUp
+    //aqui se agregan las rutas de los archivos o paginas del sistema
+    NavBarWeb,
+    Error404,
+    Login,
+    SignUp,
+    //customer
+    NavBarCustomer,
 
 );
 export default route(function (/* { store, ssrContext } */) {
-  const createHistory = process.env.SERVER
-    ? createMemoryHistory
-    : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
+    const createHistory = process.env.SERVER
+        ? createMemoryHistory
+        : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
 
-  const Router = createRouter({
-    scrollBehavior: () => ({ left: 0, top: 0 }),
-    routes,
+    return createRouter({
+            scrollBehavior: () => ({ left: 0, top: 0 }),
+            routes,
 
-    // Leave this as is and make changes in quasar.conf.js instead!
-    // quasar.conf.js -> build -> vueRouterMode
-    // quasar.conf.js -> build -> publicPath
-    history: createHistory(process.env.VUE_ROUTER_BASE)
-  })
-
-  return Router
+            // Leave this as is and make changes in quasar.conf.js instead!
+            // quasar.conf.js -> build -> vueRouterMode
+            // quasar.conf.js -> build -> publicPath
+            history: createHistory(process.env.VUE_ROUTER_BASE)
+        });
 })

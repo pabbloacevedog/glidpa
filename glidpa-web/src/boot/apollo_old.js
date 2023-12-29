@@ -1,18 +1,19 @@
+import { boot } from 'quasar/wrappers'
 import { ApolloClient, InMemoryCache, split, ApolloLink } from '@apollo/client/core';
+import { DefaultApolloClient } from '@vue/apollo-composable';
 import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
 import { getMainDefinition } from '@apollo/client/utilities';
-// import VueApollo from 'vue-apollo'
-// import fetch from 'node-fetch'
 import { createUploadLink } from 'apollo-upload-client'
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 
-
-const httpLink = createUploadLink({ uri: import.meta.env.VITE_API_URL})
+console.log('VITE_GRAPHQL_URL',import.meta.env.VITE_GRAPHQL_URL)
+console.log('VITE_GRAPHQL_WS',import.meta.env.VITE_GRAPHQL_WS )
+const httpLink = createUploadLink({ uri: import.meta.env.VITE_GRAPHQL_URL })
 const wsLink = new GraphQLWsLink(
     createClient({
-        url: import.meta.env.VITE_API_WS_URL,
+        url: import.meta.env.VITE_GRAPHQL_WS,
         options: {
             reconnect: true,
         },
@@ -79,33 +80,7 @@ const apolloClient = new ApolloClient({
     cache: new InMemoryCache(),
     connectToDevTools: true
 })
-
-
-// const apollo = new VueApollo({
-//     defaultClient: apolloClient,
-//     errorHandler({ graphQLErrors, networkError }) {
-//         if (graphQLErrors) {
-//             graphQLErrors.map(({ message, locations, path }) =>
-//                 console.log(
-//                     `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-//                 )
-//             )
-//         }
-//         if (networkError) {
-//             console.log(`[Network error]: ${networkError}`)
-//         }
-//     }
-// })
-
-// window.__APOLLO_CLIENT__ = apollo
-export default ({ app, Vue, store }) => {
-    // Vue.use(apollo)
-    // app.apolloProvider = apollo
-    // store.$apollo = apollo
-    // Vue.prototype.$apollo = apollo
-    Vue.use(apolloClient)
-    app.apolloProvider = apolloClient
-    store.$apollo = apolloClient
-    Vue.prototype.$apollo = apolloClient
+export default boot(({ app }) => {
+    app.provide(DefaultApolloClient, apolloClient);
     app.config.globalProperties.$apollo = apolloClient;
-}
+})

@@ -1,4 +1,5 @@
 // globalProperties.js
+import { boot } from 'quasar/wrappers'
 import { reactive } from 'vue';
 
 export const globalProperties = reactive({
@@ -13,6 +14,9 @@ export const globalProperties = reactive({
 });
 
 // Si necesitas funciones, puedes añadir métodos a este objeto reactivo
-export default ({ app }) => {
+// export default ({ app }) => {
+//     app.config.globalProperties.$appState = globalProperties;
+// }
+export default boot(({ app }) => {
     app.config.globalProperties.$appState = globalProperties;
-}
+})

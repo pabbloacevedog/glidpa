@@ -7,8 +7,8 @@
                 <h2 class="texto-primary title-presentation">La mejor manera de automatizar tu empresa</h2>
                 <span class="hero-trial">Contrata tu propio bot con IA para automatizar tus consultas</span>
                 <div class="hero-ctas">
-                    <q-btn size="lg" outline rounded color="primary" label="Pruebalo gratis" class="btn-prestentation" />
-                    <q-btn size="lg" rounded color="primary" label="Más sobre Glidpa IA" class="btn-prestentation" />
+                    <q-btn size="lg" outline rounded color="primary" label="Pruebalo gratis" class="btn-prestentation" @click="tryForFree"/>
+                    <q-btn size="lg" rounded color="primary" label="Más sobre Glidpa IA" class="btn-prestentation" @click="seeHowItWorks"/>
                 </div>
                 <div class="trusted-by">
                     Di adios a la tediosa forma de hacer reservas manualmente, deja que Glidpa lo haga por ti y ten tu proio
@@ -23,16 +23,24 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
-    methods: {
-        tryForFree() {
+    setup() {
+        const router = useRouter();
+
+        const tryForFree = () => {
+            router.push('/signup');
+        }
+        const seeHowItWorks = () => {
             // Implement your logic
-        },
-        seeHowItWorks() {
-            // Implement your logic
+            router.push('/about-us');
+        }
+        return {
+            tryForFree,
+            seeHowItWorks,
         }
     }
-};
+}
 </script>
 
 <style scoped>

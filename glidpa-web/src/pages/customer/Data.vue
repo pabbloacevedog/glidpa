@@ -5,7 +5,7 @@
             <div class="title-contacto q-mb-xs texto-primary">Contacta con nosotros</div>
         </div>
         <div class="column items-center">
-            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md formulario" ref="contactForm">
+            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md formulario" ref="myForm">
                 <q-card class="bg-card col-6 col-md-6 col-xs-12">
                     <q-card-section class="q-pb-none q-pt-none">
                         <div class="text-h5 q-mb-md" style="text-align: center;">Sientete libre de contactarnos cuando tu
@@ -48,7 +48,7 @@ import { ref } from 'vue'
 export default {
 
     data() {
-        const contactForm = ref(null)
+        const myForm = ref(null)
         const $q = useQuasar()
 
         const nombre = ref(null)
@@ -64,7 +64,7 @@ export default {
             telefono,
             mensaje,
             onSubmit() {
-                contactForm.value.validate().then(success => {
+                myForm.value.validate().then(success => {
                     if (success) {
                         $q.notify({
                             color: 'green-4',

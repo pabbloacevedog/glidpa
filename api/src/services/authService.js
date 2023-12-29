@@ -7,7 +7,7 @@ import config from '../config/config.json';
 import { getCompanyIdByUserId, createCompany} from './companyService';
 // Obtener un usuario por email
 export async function obtenerUsuario(email) {
-	return await models.Customer.findOne({ where: { email } });
+	return await models.User.findOne({ where: { email } });
 }
 
 // Generar token JWT
@@ -37,20 +37,22 @@ export async function login(email, password) {
 		throw new Error(`Lo sentimos, la contraseña que ingresaste es incorrecta. Inténtalo de nuevo.`);
 	}
     // Obtener company_id
-    const companyId = await getCompanyIdByUserId(datosUsuario.user_id);
-	return await generarToken(usuario, companyId);
+    const companyId = await getCompanyIdByUserId(usuario.user_id);
+	const token = await generarToken(usuario, companyId);
+	return {token}
 }
 
 // Función para registrar un nuevo usuario
-export async function signup(user, email, password) {
-	const newUser = await models.Customer.create({
+export async function signup(email, user, password) {
+	const newUser = await models.User.create({
 		user,
 		email,
 		password, // La contraseña se hashea automáticamente gracias al hook beforeCreate
 		role_id: 2
 	});
 	const newCompany = await createCompany({ user_id: newUser.user_id });
-	return await generarToken(usuario, newCompany.company_id);
+	const token = await generarToken(newUser, newCompany.company_id);
+	return {token}
 }
 
 export async function loginGoogle(token) {
@@ -78,13 +80,13 @@ async function crearNuevoUsuario(user) {
 		avatar: user.picture,
 		role_id: 2,
 	};
-	return await models.Usuario.create(crear);
+	return await models.User.create(crear);
 }
-function checkRole(requiredRoles) {
-    return (parent, args, context, info) => {
-        if (!context.user || !requiredRoles.includes(context.user.role_id)) {
-            throw new Error('No autorizado');
-        }
-    };
-}
+// function checkRole(requiredRoles) {
+//     return (parent, args, context, info) => {
+//         if (!context.user || !requiredRoles.includes(context.user.role_id)) {
+//             throw new Error('No autorizado');
+//         }
+//     };
+// }
 

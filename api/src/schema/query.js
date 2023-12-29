@@ -2,7 +2,7 @@
 import {GraphQLObjectType} from 'graphql'
 
 // App Imports
-import * as auth from './auth/fields/query.js'
+import * as company from './company/fields/queries.js'
 console.info(`INFO  - Cargando querys.`)
 // Querys
 const query = new GraphQLObjectType({
@@ -10,7 +10,7 @@ const query = new GraphQLObjectType({
 	description: '...',
 
 	fields: () => ({
-		...auth,
+		...company,
 	})
 })
 

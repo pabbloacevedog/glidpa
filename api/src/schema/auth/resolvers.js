@@ -4,19 +4,17 @@ import { login, signup, loginGoogle } from '../../services/authService';
 
 export const authResolver = {
     Mutation: {
-        signup: async (parent, { user, email, password }) => {
-            return await signup(user, email, password);
+        signup: async (parent, { email, user, password }) => {
+            return await signup( email, user, password);
         },
-        // ...otros métodos si los hay
-    },
-	Query:{
-        login: async (parent, { email, password }) => {
+		login: async (parent, { email, password }) => {
             return await login(email, password);
         },
         loginGoogle: async (parent, { token }) => {
             return await loginGoogle(token);
         },
-	}
+        // ...otros métodos si los hay
+    },
     // ...otros resolvers si los hay
 };
 

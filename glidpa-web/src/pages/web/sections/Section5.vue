@@ -50,7 +50,7 @@
                         </div>
                     </q-card-section>
                     <div class="q-mt-lg column items-center">
-                        <q-btn rounded color="primary" label="Comenzar" />
+                        <q-btn rounded color="primary" label="Comenzar" @click="seePricing" />
                     </div>
                 </q-card>
             </div>
@@ -61,9 +61,17 @@
 </template>
 
 <script>
+import { useRouter } from 'vue-router';
 export default {
-    data() {
+    setup() {
+        const router = useRouter();
+
+        const seePricing = () => {
+            // Implement your logic
+            router.push('/pricing');
+        }
         return {
+            seePricing,
             steps: {
                 one: {
                     title: 'Selecciona tu plan',
@@ -82,9 +90,9 @@ export default {
                     description: 'Difunde el enlace y el código QR de tu página entre tus clientes y compártela en tus redes sociales.',
                 },
             }
-        };
+        }
     }
-};
+}
 </script>
 
 <style scoped>
