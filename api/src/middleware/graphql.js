@@ -6,7 +6,7 @@ import { WebSocketServer } from 'ws';
 import { useServer } from 'graphql-ws/lib/use/ws';
 import { PubSub } from 'graphql-subscriptions';
 import schema from '../schema/index.js'
-import { getDynamicContext } from '../utils/index.js'
+import context from '../utils/context.js';
 
 const pubsub = new PubSub();
 
@@ -19,10 +19,7 @@ export async function setupGraphQL(server, httpServer) {
     //     context: async ({ req }) => ({ pubsub, ...getDynamicContext(req) }),
     // }));
 	server.use('/graphql', expressMiddleware(graphQLServer, {
-        context: async ({ req }) => {
-            const userContext = await getDynamicContext(req);
-            return { pubsub, ...userContext };
-        },
+        context
     }));
 }
 

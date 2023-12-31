@@ -22,6 +22,7 @@ export const useAuthStore = defineStore("auth", {
                         user: Data.user,
                         password: Data.password,
                     },
+                    operationName: "SignUp"
                 }));
                 const response = await customerSignup()
                 if (response && response.data) {
@@ -42,6 +43,7 @@ export const useAuthStore = defineStore("auth", {
                         email: credentials.email,
                         password: credentials.password,
                     },
+                    operationName: "Login"
                 }));
                 const response = await customerLogin()
                 if (response && response.data) {

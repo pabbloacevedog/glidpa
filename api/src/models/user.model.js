@@ -42,6 +42,9 @@ module.exports = (sequelize) => {
         personal_phone: {
             type: Sequelize.STRING(20)
         },
+        verification_code: {
+            type: Sequelize.STRING(20)
+        },
         verified: {
             type: Sequelize.BOOLEAN
         },

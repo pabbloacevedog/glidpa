@@ -51,10 +51,10 @@ export default defineComponent({
 
 <style scoped>
 .bg-card {
-    background: rgb(6 0 0 / 50%) !important;
+    background: rgb(0 0 0 / 35%) !important;
     -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(20px);
-    border: 0.5px solid rgb(22 10 26 / 92%);
+    backdrop-filter: blur(15px);
+    /* border: 0.5px solid rgb(22 10 26 / 92%); */
     border-radius: 35px !important;
     margin: 5px !important;
 }
@@ -113,15 +113,16 @@ export default defineComponent({
     }
 
     .bg-card {
-        background: rgb(6 0 0 / 50%) !important;
+        background: rgb(0 0 0 / 35%) !important;
         -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(20px);
-        border: 0.5px solid rgb(22 10 26 / 92%);
+        backdrop-filter: blur(15px);
+        /* border: 0.5px solid rgb(22 10 26 / 92%); */
         border-radius: 35px !important;
-        margin: 10px !important;
+        margin: 5px !important;
     }
 
     .section-plan {
         padding: 10% !important;
     }
-}</style>
+}
+</style>

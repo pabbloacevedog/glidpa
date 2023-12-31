@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import CryptoJS from 'crypto-js';
-import config from '../config/config.json';
+import { SALT_ROUNDS, PASSPHRASE } from '../config/config';
 import jwt from 'jsonwebtoken';
 import models from '../models';
 const findUser = async (authToken) => {
@@ -13,12 +13,10 @@ const tokenIsNotValid = (connectionParams) => {
     console.log('tokenIsNotValid', connectionParams)
     return false;
 };
-const secretKey = process.env.ENCRYPTION_KEY || config.passphrase; // Utiliza una variable de entorno o fallback a config
-
-const encrypt = (text) => CryptoJS.AES.encrypt(text, secretKey).toString();
+const encrypt = (text) => CryptoJS.AES.encrypt(text, PASSPHRASE).toString();
 
 const decrypt = (ciphertext) => {
-    const bytes = CryptoJS.AES.decrypt(ciphertext, secretKey);
+    const bytes = CryptoJS.AES.decrypt(ciphertext, PASSPHRASE);
     return bytes.toString(CryptoJS.enc.Utf8);
 };
 
@@ -29,7 +27,7 @@ async function desencriptarPassword(passwordEncriptada) {
 
 // Utilidad para crear hash de contraseña
 async function hashPassword(password) {
-    return await bcrypt.hash(password, config.saltRounds);
+    return await bcrypt.hash(password, SALT_ROUNDS);
 }
 export const getDynamicContext = async (req) => {
     const token = req.headers.authorization || '';
@@ -39,7 +37,7 @@ export const getDynamicContext = async (req) => {
         return { user };
     } catch (error) {
         // Manejar error o devolver un contexto sin usuario
-        return {};
+        throw new Error(`No autorizado`);
     }
 };
 export function authorizeUser(roleIdAdmin, roleIdCustomer) {
