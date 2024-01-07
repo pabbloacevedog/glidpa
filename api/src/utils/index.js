@@ -27,6 +27,7 @@ async function desencriptarPassword(passwordEncriptada) {
 
 // Utilidad para crear hash de contraseña
 async function hashPassword(password) {
+	console.log('SALT_ROUNDS', SALT_ROUNDS)
     return await bcrypt.hash(password, SALT_ROUNDS);
 }
 export const getDynamicContext = async (req) => {

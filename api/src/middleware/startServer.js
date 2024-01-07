@@ -1,5 +1,5 @@
 import models from '../models/index.js';
-import { LOGGING, PORT } from '../config/config.js';
+import { PORT } from '../config/config.js';
 
 const { DB_FORCE_RESTART, ENV } = process.env;
 async function syncDatabase() {

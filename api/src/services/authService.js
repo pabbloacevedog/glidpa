@@ -27,24 +27,38 @@ export async function generarToken(usuario, company_id) {
 
 // Función para iniciar sesión
 export async function login(email, password) {
-	const usuario = await obtenerUsuario(email);
+	// Encuentra al usuario y su compañía asociada
+	const usuarioCompare = await models.User.findOne({ where: { email } });
 
-	if (!usuario) {
+
+	if (!usuarioCompare) {
 		throw new Error(`No tenemos ningún usuario registrado con el email ${email}. Por favor regístrese.`);
 	}
 
-	const passwordMatch = await bcrypt.compare(password, usuario.password);
+	const passwordMatch = await bcrypt.compare(password, usuarioCompare.password);
 	if (!passwordMatch) {
 		throw new Error(`Lo sentimos, la contraseña que ingresaste es incorrecta. Inténtalo de nuevo.`);
 	}
+	const usuario = await models.User.findOne({
+		where: { email },
+		attributes: { exclude: ['password'] }, // Excluye la contraseña de los resultados
+		include: [{
+			model: models.Company,
+		}]
+	});
 	// Obtener company_id
 	const companyId = await getCompanyIdByUserId(usuario.user_id);
 	const token = await generarToken(usuario, companyId);
-	return { token }
+	return { token, userData: usuario}
 }
 
 // Función para registrar un nuevo usuario
 export async function signup(email, user, password) {
+	const usuario = await obtenerUsuario(email);
+
+	if (usuario) {
+		throw new Error(`Ya tenemos un usuario registrado con el email ${email}. Por favor Inicie sesión.`);
+	}
 	const codigoVerificacion = generarCodigoVerificacion();
 
 	const newUser = await models.User.create({
@@ -54,29 +68,34 @@ export async function signup(email, user, password) {
 		role_id: 2,
 		verification_code: codigoVerificacion // Almacena el código en la base de datos
 	});
-	// const newUser = await models.User.create({
-	// 	user,
-	// 	email,
-	// 	password, // La contraseña se hashea automáticamente gracias al hook beforeCreate
-	// 	role_id: 2
-	// });
+	console.log('newUser', newUser)
 	const newCompany = await createCompany({ user_id: newUser.user_id });
 	// const token = await generarToken(newUser, newCompany.company_id);
-	enviarCorreoVerificacion()
-	return { mensaje: "Usuario creado con éxito. Por favor valida tu email para continuar." };
+	// enviarCorreoVerificacion()
+	return { message: "Usuario creado con éxito. Por favor valida tu email para continuar." };
 }
 async function enviarCorreoVerificacion(emailUsuario, codigoVerificacion) {
-	const transporter = nodemailer.createTransport({
-		service: 'gmail',
+	// const transporter = nodemailer.createTransport({
+	// 	service: 'gmail',
+	// 	auth: {
+	// 		user: 'pablo@gmail.com',
+	// 		pass: 'tuContraseña',
+	// 	},
+	// });
+	let testAccount = await nodemailer.createTestAccount();
+	// create reusable transporter object using the default SMTP transport
+	let transporter = nodemailer.createTransport({
+		host: "smtp.ethereal.email",
+		port: 587,
+		secure: false, // true for 465, false for other ports
 		auth: {
-			user: 'tuEmail@gmail.com',
-			pass: 'tuContraseña',
+			user: testAccount.user, // generated ethereal user
+			pass: testAccount.pass, // generated ethereal password
 		},
 	});
-
 	const mensaje = `Tu código de verificación es: ${codigoVerificacion}`;
 	await transporter.sendMail({
-		from: 'tuEmail@gmail.com',
+		from: 'gildpa@gmail.com',
 		to: emailUsuario,
 		subject: 'Verificación de Cuenta',
 		text: mensaje,
@@ -95,9 +114,9 @@ async function activarCuenta(usuarioId) {
 }
 
 function generarCodigoVerificacion() {
-    const min = 1000;  // Para un código de 4 dígitos
-    const max = 9999;  // El máximo para 4 dígitos
-    return Math.floor(Math.random() * (max - min + 1)) + min;
+	const min = 1000;  // Para un código de 4 dígitos
+	const max = 9999;  // El máximo para 4 dígitos
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 export async function loginGoogle(token) {
 	try {

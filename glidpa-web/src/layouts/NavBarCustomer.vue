@@ -5,13 +5,15 @@
             <q-toolbar class="bg-black text-white">
                 <q-btn dense flat round icon="menu" @click="drawer = !drawer" />
 
-                <q-toolbar-title @click="redirigir" style="padding-left: 3%;" class="cursor-pointer" v-if="!$q.platform.is.mobile" >
+                <q-toolbar-title @click="redirigir" style="padding-left: 3%;" class="cursor-pointer"
+                    v-if="!$q.platform.is.mobile">
                     <q-avatar>
                         <img src="@/assets/logo.png">
                     </q-avatar>
                     Glidpa IA
                 </q-toolbar-title>
-                <q-toolbar-title @click="redirigir" class="cursor-pointer row justify-center" v-if="$q.platform.is.mobile" style="padding-left: 0%; padding-right: 10%;">
+                <q-toolbar-title @click="redirigir" class="cursor-pointer row justify-center" v-if="$q.platform.is.mobile"
+                    style="padding-left: 0%; padding-right: 10%;">
                     <q-avatar>
                         <img src="@/assets/logo.png">
                     </q-avatar>
@@ -19,7 +21,7 @@
                 </q-toolbar-title>
                 <nav class=" navbar">
                     <div class="auth-links">
-                        <q-btn to="/login" outline rounded color="primary" label="Bienvenido" />
+                        <q-btn rounded color="negative" label="SALIR"  @click="handleLogout" />
                     </div>
                 </nav>
             </q-toolbar>
@@ -78,10 +80,16 @@ const menuList = [
     }
 ]
 import { useRouter } from 'vue-router';
+import { useAuthStore } from 'src/stores/auth';
 export default {
     setup() {
         const router = useRouter();
+        const authStore = useAuthStore();
 
+        async function handleLogout() {
+            await authStore.logout();
+            router.push('/login');
+        }
         const redirigir = () => {
             router.push('/');
         };
@@ -91,7 +99,8 @@ export default {
             toggleLeftDrawer() {
                 drawer.value = !drawer.value
             },
-            redirigir
+            redirigir,
+            handleLogout
         }
     }
 }

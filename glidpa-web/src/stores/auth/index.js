@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { useMutation } from "@vue/apollo-composable";
+import { api } from 'boot/axios'
 import {
     CREATE_CUSTOMER_MUTATION,
     CUSTOMER_LOGIN_MUTATION,
@@ -9,7 +10,8 @@ export const useAuthStore = defineStore("auth", {
     state: () => ({
         isLoggedIn: false,
         token: null,
-        userData: null,
+        userData: JSON.parse(localStorage.getItem("userData")),
+        error: null
     }),
 
     actions: {
@@ -33,31 +35,57 @@ export const useAuthStore = defineStore("auth", {
                 }
             } catch (error) {
                 console.error("Error en el registro:", error);
+                this.error = error;
                 throw error;
             }
         },
         async loginCustomer(credentials) {
             try {
-                const { mutate: customerLogin } = useMutation(CUSTOMER_LOGIN_MUTATION, (token) => ({
-                    variables: {
+                // Realiza una petición POST al endpoint /login
+                const response = await api.post('/login',
+                    JSON.stringify({
                         email: credentials.email,
                         password: credentials.password,
-                    },
-                    operationName: "Login"
-                }));
-                const response = await customerLogin()
-                if (response && response.data) {
-                    console.log(response.data, 'Respuesta de la mutación');
-                    this.token = response.data.customerLogin.token; // Asegúrate de que el path aquí sea correcto
-                    this.userData = { ...credentials, password: undefined };
+                    }),
+                    {
+                        headers: { "Content-Type": "application/json" },
+                        withCredentials: true
+                    }
+                );
+
+                if (response) {
+                    console.log('Login exitoso');
+                    // this.userData = response.data.userData
+                    localStorage.setItem("userData", JSON.stringify(response.data.userData));
                     this.isLoggedIn = true;
+                    this.userData = response.data.userData;
+                    console.log('response', response);
+                    // Si necesitas el token en el cliente, aquí podrías extraerlo de la respuesta
+                    // const data = await response.json();
+                    // this.token = data.token; // Asegúrate de que el path aquí sea correcto
+                } else {
+                    // Manejo de errores de respuesta
+                    throw new Error('Error en el login');
                 }
             } catch (error) {
-                console.error("Error en el registro:", error);
+                console.error("Error en el login:", error);
                 throw error;
             }
-
         },
+        async logout() {
+            try {
+                // Llamada al endpoint de logout
+                await api.post('/logout', {}, { withCredentials: true });
+
+                // Limpia el estado local
+                this.isLoggedIn = false;
+                this.userData = null;
+                this.token = null;
+                localStorage.removeItem('userData'); // eliminar datos del usuairo  'userData'
+            } catch (error) {
+                console.error('Error durante el logout:', error);
+            }
+        }
         // ... otras acciones como logout, etc.
     },
 });

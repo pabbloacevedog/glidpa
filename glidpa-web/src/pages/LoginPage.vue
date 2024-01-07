@@ -113,7 +113,8 @@ export default defineComponent({
                 })
                 router.push('/dashboard');
             } catch (error) {
-                var message = error.message.replace('GraphQL error: ', '')
+                console.log('Error:', error)
+                var message = error.response.data
                 $q.notify({
                     color: 'negative',
                     textColor: 'white',

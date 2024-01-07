@@ -1,5 +1,7 @@
 import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
+import { useAuthStore } from 'src/stores/auth';
+import { api } from 'boot/axios'
 // import routes from './routes'
 import NavBarWeb from './web/NavBarWeb';
 import Error404 from './web/NotFound';
@@ -31,13 +33,42 @@ export default route(function (/* { store, ssrContext } */) {
         ? createMemoryHistory
         : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
 
-    return createRouter({
-            scrollBehavior: () => ({ left: 0, top: 0 }),
-            routes,
+    const router = createRouter({
+        scrollBehavior: () => ({ left: 0, top: 0 }),
+        routes,
+        history: createHistory(process.env.VUE_ROUTER_BASE)
+    });
 
-            // Leave this as is and make changes in quasar.conf.js instead!
-            // quasar.conf.js -> build -> vueRouterMode
-            // quasar.conf.js -> build -> publicPath
-            history: createHistory(process.env.VUE_ROUTER_BASE)
-        });
+    router.beforeEach(async (to, from, next) => {
+        const authStore = useAuthStore();
+
+        // Asegúrate de que el estado de autenticación esté actualizado
+        if (!authStore.isLoggedIn) {
+            try {
+                const response = await api.get('/auth/status', { withCredentials: true });
+                if (response.data.isLoggedIn) {
+                    authStore.isLoggedIn = true;
+                } else {
+                    if (to.matched.some(record => record.meta.requiresAuth)) {
+                        return next('/login');
+                    }
+                }
+            } catch (error) {
+                console.error('Error al verificar el estado de la sesión:', error);
+                if (to.matched.some(record => record.meta.requiresAuth)) {
+                    return next('/login');
+                }
+            }
+        }
+
+        if (to.matched.some(record => record.meta.requiresAuth) && !authStore.isLoggedIn) {
+            return next('/login');
+        } else if (to.matched.some(record => record.meta.guestOnly) && authStore.isLoggedIn) {
+            return next('/dashboard');
+        } else {
+            next();
+        }
+    });
+
+    return router;
 })
