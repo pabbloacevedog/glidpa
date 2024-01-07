@@ -1,5 +1,5 @@
 <template>
-    <q-layout view="hHh lpR fff">
+    <q-layout view="hHh lpR fFf">
 
         <q-header>
             <q-toolbar class="bg-black text-white">
@@ -21,31 +21,28 @@
                 </q-toolbar-title>
                 <nav class=" navbar">
                     <div class="auth-links">
-                        <q-btn rounded color="negative" label="SALIR"  @click="handleLogout" />
+                        <q-btn rounded color="negative" label="SALIR" @click="handleLogout" />
                     </div>
                 </nav>
             </q-toolbar>
         </q-header>
-        <q-drawer v-model="drawer" :width="200" :breakpoint="500" overlay side="left" class="bg-black text-white">
-            <q-scroll-area class="fit">
+        <!-- <q-drawer v-model="drawer" :width="200" :breakpoint="500" overlay side="left" class="bg-black text-white"> -->
+        <q-drawer v-model="drawer" show-if-above :mini="miniState" @mouseover="miniState = false"
+            @mouseout="miniState = true" :width="200" :breakpoint="500" bordered
+            class="bg-black text-admin">
+            <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
                 <q-list>
                     <div v-for="(menuItem, index) in menuList" :key="index">
-                        <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
-                            <q-item-section class="texto-primary">
-                                <a :href="menuItem.link" class="nav-link texto-primary">{{ menuItem.label }}</a>
-
+                        <q-item clickable  v-ripple :active="link === menuItem.link" :to="menuItem.link">
+                            <q-item-section avatar>
+                                <q-icon :name="menuItem.icon"></q-icon>
+                            </q-item-section>
+                            <q-item-section>
+                                {{ menuItem.label }}
                             </q-item-section>
                         </q-item>
-                        <q-separator :key="'sep' + index" v-if="menuItem.separator" />
+                        <q-separator :key="'sep' + index" v-if="menuItem.separator"></q-separator>
                     </div>
-                    <q-item>
-                        <q-btn outline rounded color="primary" label="Iniciar Sesión" />
-                    </q-item>
-                    <q-separator />
-                    <q-item>
-                        <q-btn rounded color="primary" label="Únete" style="padding: 0 30px;" />
-                    </q-item>
-                    <q-separator />
                 </q-list>
             </q-scroll-area>
         </q-drawer>
@@ -61,22 +58,46 @@ import { ref } from 'vue'
 
 const menuList = [
     {
-        icon: 'price_change',
-        label: 'Datos',
-        link: '#data',
+        icon: 'fa-solid fa-chart-line',
+        label: 'Dashboard',
+        link: '/dashboard',
         separator: true
     },
     {
-        icon: 'favorite',
-        label: 'Sobre nososotros',
-        separator: false,
-        link: '#about-us',
+        icon: 'fa-solid fa-shop',
+        label: 'Empresa',
+        link: '/data',
+        separator: true
     },
     {
-        icon: 'phone',
-        label: 'Contacto',
+        icon: 'fa-solid fa-robot',
+        label: 'Chat bot',
+        separator: false,
+        link: '/chatbot',
+    },
+    {
+        icon: 'fa-solid fa-pager',
+        label: 'Landing page',
+        separator: false,
+        link: '/landing'
+    },
+    {
+        icon: 'fa-solid fa-calendar-days',
+        label: 'Agenda',
         separator: true,
-        link: '#contact'
+        link: '/agenda'
+    },
+    {
+        icon: 'fa-solid fa-comment-dots',
+        label: 'Mensajes',
+        separator: true,
+        link: '/messages'
+    },
+    {
+        icon: 'fa-solid fa-sliders',
+        label: 'Configuración',
+        separator: false,
+        link: '/settings'
     }
 ]
 import { useRouter } from 'vue-router';
@@ -95,6 +116,7 @@ export default {
         };
         return {
             drawer: ref(false),
+            miniState: ref(true),
             menuList,
             toggleLeftDrawer() {
                 drawer.value = !drawer.value
@@ -114,6 +136,8 @@ export default {
     background-color: #000;
     color: #fff;
 }
+
+
 
 .logo {
     font-size: 1.5rem;

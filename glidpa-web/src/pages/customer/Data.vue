@@ -1,153 +1,150 @@
-<!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <q-page class="contact-page text-white">
-        <div class="q-mb-lg column items-center">
-            <div class="title-contacto q-mb-xs texto-primary">Contacta con nosotros</div>
-        </div>
-        <div class="column items-center">
-            <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md formulario" ref="myForm">
-                <q-card class="bg-card col-6 col-md-6 col-xs-12">
-                    <q-card-section class="q-pb-none q-pt-none">
-                        <div class="text-h5 q-mb-md" style="text-align: center;">Sientete libre de contactarnos cuando tu
-                            quieras</div>
-                        <div class="row items-center">
-                            <q-input dark rounded standout v-model="nombre" label="Nombre"
-                                class="input-contact q-px-md col-md-6 col-xs-12" lazy-rules
-                                :rules="[val => val && val.length > 0 || 'Debe escribir su nombre']" />
-                            <q-input dark rounded standout v-model="apellido" label="Apellido"
-                                class="input-contact q-px-md  col-md-6 col-xs-12" lazy-rules
-                                :rules="[val => val && val.length > 0 || 'Debe escribirr su apellido']" />
-                        </div>
+    <q-page class="q-px-lg">
+        <div class="row q-col-gutter-sm">
+            <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
+                <q-card class="card-bg text-white no-shadow" bordered>
+                    <q-card-section horizontal>
+                        <q-card-section class="col-lg-7 col-md-7 col-xs-12 col-sm-12 column justify-center q-pl-lg">
+                            <div class="text-h6">Datos Empresa</div>
+                            <div class="text-subtitle2">Completa los datos de tu empresa</div>
+                        </q-card-section>
+
+                        <q-separator vertical />
+
+                        <q-card-section class="col-lg-5 col-md-5 col-xs-12 col-sm-12">
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section side>
+                                    <q-avatar size="100px">
+                                        <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                                    </q-avatar>
+                                </q-item-section>
+                                <q-item-section>
+                                    <q-btn label="Agregar Logo" class="text-capitalize" rounded color="primary"
+                                        style="max-width: 120px"></q-btn>
+                                </q-item-section>
+                            </q-item>
+                        </q-card-section>
                     </q-card-section>
-                    <q-card-section class="row items-center q-pb-none">
-                        <q-input dark rounded standout v-model="email" label="Email"
-                            class="input-contact q-px-md  col-md-6 col-xs-12" lazy-rules
-                            :rules="[val => val && val.length > 0 || 'Debe escribi su email']" />
-                        <q-input dark rounded standout v-model="telefono" label="Telefono"
-                            class="input-contact q-px-md  col-md-6 col-xs-12" lazy-rules
-                            :rules="[val => val && val.length > 0 || 'Debe escribir su telefono']" />
+                    <q-card-section class="q-pa-sm">
+                        <q-list class="row">
+                            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="company.company_name"
+                                        label="Nombre Empresa" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="company.company_email"
+                                        label="Email Empresa" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="company.company_phone"
+                                        label="Teléfono Empresa" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="user.user" disable readonly
+                                        label="Usuario y link de la web" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" autogrow dense v-model="company.address"
+                                        label="Address" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="company.region"
+                                        label="Región" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="company.city" label="City" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="company.google_map_link"
+                                        label="Link Google maps" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" type="textarea" dense v-model="company.description_company"
+                                        label="Descripción Empresa" />
+                                </q-item-section>
+                            </q-item>
+                        </q-list>
                     </q-card-section>
-                    <q-card-section class="row items-center">
-                        <q-input dark standout v-model="mensaje" label="Mensaje" filled type="textarea" lazy-rules
-                            :rules="[val => val && val.length > 0 || 'Debe escribir su nombre']"
-                            class="input-contact q-px-md  col-md-12 col-xs-12" />
-                    </q-card-section>
-                    <q-card-actions align="right" class="column items-center q-pb-none">
-                        <q-btn color="primary btn-contact" type="submit" label="Enviar" rounded />
-                        <q-btn label="Limpiar" type="reset" color="primary" flat class="q-ml-sm" />
+                    <q-card-actions align="right">
+                        <q-btn rounded class="text-capitalize bg-primary text-white q-ma-lg q-pa-lg">Guardar</q-btn>
                     </q-card-actions>
                 </q-card>
-            </q-form>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+
+                <q-card class="card-bg text-white no-shadow" bordered>
+                    <q-card-section class="col-lg-7 col-md-7 col-xs-12 col-sm-12 column justify-center q-pl-lg">
+                            <div class="text-h6">Datos Usuario</div>
+                            <div class="text-subtitle2">Completa tus datos personales</div>
+                        </q-card-section>
+                    <q-card-section>
+                        <q-list class="row">
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="user.name"
+                                        label="Nombre" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="user.email"
+                                        label="Email" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="user.rut_user"
+                                        label="Rut" />
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <q-input dark filled color="white" dense v-model="user.personal_phone"
+                                        label="Celular" />
+                                </q-item-section>
+                            </q-item>
+                        </q-list>
+                    </q-card-section>
+                </q-card>
+            </div>
+
+
         </div>
     </q-page>
 </template>
 
 <script>
-import { useQuasar } from 'quasar'
-import { ref } from 'vue'
-export default {
+import { defineComponent } from 'vue'
 
-    data() {
-        const myForm = ref(null)
-        const $q = useQuasar()
-
-        const nombre = ref(null)
-        const apellido = ref(null)
-        const email = ref(null)
-        const telefono = ref(null)
-        const mensaje = ref(null)
-
+export default defineComponent({
+    name: "UserProfile",
+    setup() {
         return {
-            nombre,
-            apellido,
-            email,
-            telefono,
-            mensaje,
-            onSubmit() {
-                myForm.value.validate().then(success => {
-                    if (success) {
-                        $q.notify({
-                            color: 'green-4',
-                            textColor: 'white',
-                            icon: 'cloud_done',
-                            message: 'Submitted'
-                        })
-                    }
-                    else {
-                        $q.notify({
-                            color: 'red-5',
-                            textColor: 'white',
-                            icon: 'warning',
-                            message: 'You need to accept the license and terms first'
-                        })
-                    }
-                })
-            },
-            onReset() {
-                nombre.value = null
-                apellido.value = null
-                email.value = null
-                telefono.value = null
-                mensaje.value = null
-            }
+            user: {},
+            company: {},
+            lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         }
     }
-};
+})
 </script>
 
 <style scoped>
-.contact-page {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../assets/fondo.png');
-    background-size: cover;
-    background-position: center;
-}
 
-.title-contacto {
-    font-size: 3rem;
-}
-
-.bg-card {
-    background: rgb(6 0 0 / 50%) !important;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(20px);
-    border: 0.5px solid rgb(22 10 26 / 92%);
-    border-radius: 35px !important;
-    margin: 5px !important;
-    width: 60vw;
-    padding: 2rem;
-}
-
-.q-page {
-    padding: 0 1rem 1rem 1rem;
-}
-
-.btn-contact {
-    padding: 0 20%;
-}
-
-@media (max-width: 600px) {
-    .input-contact {
-        min-width: 80vw !important;
-    }
-
-    .title-contacto {
-        font-size: 2rem;
-        text-align: center;
-    }
-
-    .fomulario {
-        width: 100vw !important;
-    }
-
-    .bg-card {
-        background: rgb(6 0 0 / 60%) !important;
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(10px);
-        border-radius: 0px !important;
-        width: 100vw !important;
-        margin: 0px !important;
-        padding: 1rem;
-    }
-}
-
-@media (min-width: 1200px) {}</style>
+</style>
