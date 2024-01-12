@@ -38,9 +38,9 @@ export default defineComponent({
     },
     setup() {
         const router = useRouter();
-        const selectPlan = (id_plan) => {
-            console.log('Selected Plan ID:', id_plan); // Verificar el valor de id_plan
-            router.push('/signup/' + id_plan);
+        const selectPlan = (plan_id) => {
+            console.log('Selected Plan ID:', plan_id); // Verificar el valor de plan_id
+            router.push('/signup/' + plan_id);
         }
         return {
             selectPlan

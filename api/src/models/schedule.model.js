@@ -29,7 +29,10 @@ module.exports = (sequelize) => {
         },
         finish: {
             type: Sequelize.TIME
-        }
+        },
+		vista: {
+            type: Sequelize.STRING(50)
+        },
     }, {
         timestamps: true,
         tableName: 'schedule',

@@ -94,18 +94,18 @@
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input dark filled color="white" dense v-model="user.title" label="Título" />
+                                <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.title" label="Título" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input dark filled color="white" type="textarea" dense v-model="user.description"
+                                <q-input dark standout="bg-primary text-white" color="white" type="textarea" dense v-model="user.description"
                                     label="Descripción" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input dark filled color="white" dense v-model="user.button" label="Button" />
+                                <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.button" label="Button" />
                             </q-item-section>
                         </q-item>
                     </q-list>

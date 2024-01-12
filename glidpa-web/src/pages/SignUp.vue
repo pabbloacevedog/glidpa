@@ -104,7 +104,7 @@ import { useQuasar } from 'quasar'
 
 export default defineComponent({
     props: {
-        id_plan: {
+        plan_id: {
             type: Number,
             default: 1
         }
@@ -173,7 +173,7 @@ export default defineComponent({
             { id: 2, label: 'Premium', color: 'premium' },
             { id: 3, label: 'Platinum', color: 'platinum' },
         ]);
-        const idPlan = ref(props.id_plan);
+        const idPlan = ref(props.plan_id);
         const selectPlan = (id, color) => {
             selectedPlan.value = id;
             selectedColor.value = color; // Actualizar el color seleccionado

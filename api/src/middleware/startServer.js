@@ -8,7 +8,7 @@ async function syncDatabase() {
 	console.info('ENV', DB_FORCE_RESTART, ENV );
     if (DB_FORCE_RESTART === 'true' && ENV !== 'production') {
 		console.info('SETUP - Creando tablas');
-        // sequelizeOptions.force = true;
+        sequelizeOptions.force = true;
     }
 
     await models.sequelize.sync(sequelizeOptions);

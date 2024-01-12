@@ -10,6 +10,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import schema from '../schema/index.js'
 import context from '../utils/context.js';
+import authenticateJWT from '../utils/authenticateJWT.js';
 import { login } from '../services/authService.js';
 const pubsub = new PubSub();
 import { JWT_SECRET } from '../config/config.js';
@@ -46,9 +47,9 @@ export async function setupGraphQL(server, httpServer) {
 			res.status(401).send(error.message);
 		}
 	});
-	server.get('/auth/status', (req, res) => {
+	server.get('/auth/status', authenticateJWT, (req, res, next) => {
 		try {
-			console.log('request.cookies.get', req.cookies.authToken)
+			// console.log('request.cookies.get', req.cookies.authToken)
 			const { authToken } = req.cookies;
 			if (!authToken) {
 				return res.json({ isLoggedIn: false });
@@ -67,7 +68,7 @@ export async function setupGraphQL(server, httpServer) {
 			res.status(500).send('Error al verificar el estado de la sesión');
 		}
 	});
-	server.post('/logout', (req, res) => {
+	server.post('/logout', authenticateJWT, (req, res, next) => {
 		res.clearCookie('authToken'); // Esto borra la cookie llamada 'authToken'
 		res.json({ message: 'Logout exitoso' });
 	});
@@ -89,6 +90,7 @@ async function setupApolloServer(httpServer, wsServer) {
 	const serverCleanup = useServer({ schema }, wsServer);
 	const graphQLServer = new ApolloServer({
 		schema,
+		introspection: true, // Habilita la introspección
 		plugins: [
 			ApolloServerPluginDrainHttpServer({ httpServer }),
 			{

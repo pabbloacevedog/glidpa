@@ -3,10 +3,10 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <q-card class="text-admin card-bg" bordered>
                 <q-card-section class="q-pa-none">
-                    <q-table class="no-shadow  bg-black" dark :rows="rows" title="Page Visits" :hide-header="mode === 'grid'" style="border-radius: 30px;"
+                    <q-table class="no-shadow  bg-black" dark :rows="rows" title="Pregutas Chatbot" :hide-header="mode === 'grid'" style="border-radius: 30px;"
                         :columns="columns" row-key="name" :filter="filter" v-model:pagination="pagination">
                         <template v-slot:top-right="props">
-                            <q-input rounded dense debounce="300" v-model="filter" placeholder="Search" dark class="text-admin">
+                            <q-input  dense standout="bg-primary text-white" debounce="300" v-model="filter" placeholder="Search" dark class="text-white">
                                 <template v-slot:append>
                                     <q-icon name="search" />
                                 </template>

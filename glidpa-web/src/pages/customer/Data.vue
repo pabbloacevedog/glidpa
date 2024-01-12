@@ -15,7 +15,7 @@
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section side>
                                     <q-avatar size="100px">
-                                        <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                                        <img src="@/assets/logo.png">
                                     </q-avatar>
                                 </q-item-section>
                                 <q-item-section>
@@ -29,54 +29,54 @@
                         <q-list class="row">
                             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="company.company_name"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="company.company_name"
                                         label="Nombre Empresa" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="company.company_email"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="company.company_email"
                                         label="Email Empresa" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="company.company_phone"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="company.company_phone"
                                         label="Teléfono Empresa" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="user.user" disable readonly
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.user" disable readonly
                                         label="Usuario y link de la web" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" autogrow dense v-model="company.address"
+                                    <q-input dark standout="bg-primary text-white" color="white" autogrow dense v-model="company.address"
                                         label="Address" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="company.region"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="company.region"
                                         label="Región" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="company.city" label="City" />
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="company.city" label="City" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="company.google_map_link"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="company.google_map_link"
                                         label="Link Google maps" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" type="textarea" dense v-model="company.description_company"
+                                    <q-input dark standout="bg-primary text-white" color="white" type="textarea" dense v-model="company.description_company"
                                         label="Descripción Empresa" />
                                 </q-item-section>
                             </q-item>
@@ -98,25 +98,25 @@
                         <q-list class="row">
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="user.name"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.name"
                                         label="Nombre" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="user.email"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.email"
                                         label="Email" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="user.rut_user"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.rut_user"
                                         label="Rut" />
                                 </q-item-section>
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <q-input dark filled color="white" dense v-model="user.personal_phone"
+                                    <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.personal_phone"
                                         label="Celular" />
                                 </q-item-section>
                             </q-item>
