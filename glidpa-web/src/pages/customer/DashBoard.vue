@@ -1,6 +1,6 @@
 <template>
-    <q-page class="q-px-lg">
-        <div class="row q-col-gutter-sm q-py-sm">
+    <q-page class="q-pa-md">
+        <div class="row q-col-gutter-sm">
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <bar-chart></bar-chart>
             </div>

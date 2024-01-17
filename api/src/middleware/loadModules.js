@@ -34,5 +34,9 @@ export function loadModules(server) {
 	server.use(bodyParser.json());
 	server.use(bodyParser.urlencoded({ extended: false }));
 	server.use(cookieParser());
+	server.use((req, res, next) => {
+		console.log('Cookies:', req.cookies);
+		next();
+	});
 	server.use(morgan('tiny'));
 }

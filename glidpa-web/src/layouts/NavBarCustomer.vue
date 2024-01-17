@@ -1,13 +1,12 @@
 <template>
     <q-layout view="hHh lpR fFf">
-
-        <q-header>
-            <q-toolbar class="bg-black text-white">
+        <q-header >
+            <q-toolbar style="height: 60px;">
                 <q-btn dense flat round icon="menu" @click="drawer = !drawer" />
 
-                <q-toolbar-title @click="redirigir" style="padding-left: 3%;" class="cursor-pointer"
+                <q-toolbar-title  style="padding-left: 3%;" class="cursor-pointer"
                     v-if="!$q.platform.is.mobile">
-                    <q-avatar>
+                    <q-avatar @click="redirigir">
                         <img src="@/assets/logo.png">
                     </q-avatar>
                     Glidpa IA
@@ -21,6 +20,9 @@
                 </q-toolbar-title>
                 <nav class=" navbar">
                     <div class="auth-links">
+                        <q-btn unelevated round icon="fa-solid fa-sun"  @click="toggleTheme"  />
+                    </div>
+                    <div class="auth-links q-pl-sm">
                         <q-btn rounded color="negative" label="SALIR" @click="handleLogout" />
                     </div>
                 </nav>
@@ -28,12 +30,12 @@
         </q-header>
         <!-- <q-drawer v-model="drawer" :width="200" :breakpoint="500" overlay side="left" class="bg-black text-white"> -->
         <q-drawer v-model="drawer" show-if-above :mini="miniState" @mouseover="miniState = false"
-            @mouseout="miniState = true" :width="200" :breakpoint="500" bordered
-            class="bg-black text-admin">
+            @mouseout="miniState = true" :width="200" :breakpoint="500" class="text-admin">
             <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
                 <q-list>
                     <div v-for="(menuItem, index) in menuList" :key="index">
-                        <q-item clickable  v-ripple :active="link === menuItem.link" :to="menuItem.link">
+                        <q-item clickable v-ripple :class="{ 'menu-activo': $route.path === menuItem.link }"
+                            :to="menuItem.link">
                             <q-item-section avatar>
                                 <q-icon :name="menuItem.icon"></q-icon>
                             </q-item-section>
@@ -41,7 +43,6 @@
                                 {{ menuItem.label }}
                             </q-item-section>
                         </q-item>
-                        <q-separator :key="'sep' + index" v-if="menuItem.separator"></q-separator>
                     </div>
                 </q-list>
             </q-scroll-area>
@@ -54,7 +55,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const menuList = [
     {
@@ -102,6 +103,8 @@ const menuList = [
 ]
 import { useRouter } from 'vue-router';
 import { useAuthStore } from 'src/stores/auth';
+import { Dark } from 'quasar'
+
 export default {
     setup() {
         const router = useRouter();
@@ -114,6 +117,20 @@ export default {
         const redirigir = () => {
             router.push('/');
         };
+        // Estado inicial del tema basado en el localStorage o por defecto a 'light'
+        const theme = ref(localStorage.getItem('theme') || 'light');
+
+        // Función para cambiar el tema
+        const toggleTheme = () => {
+            Dark.toggle();
+            localStorage.setItem('theme', Dark.isActive ? 'dark' : 'light');
+        };
+        onMounted(() => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                Dark.set(savedTheme === 'dark');
+            }
+        });
         return {
             drawer: ref(false),
             miniState: ref(true),
@@ -122,7 +139,9 @@ export default {
                 drawer.value = !drawer.value
             },
             redirigir,
-            handleLogout
+            handleLogout,
+            theme,
+            toggleTheme
         }
     }
 }
@@ -133,8 +152,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #000;
-    color: #fff;
 }
 
 
@@ -147,17 +164,6 @@ export default {
 .nav-links {
     display: flex;
     gap: 1rem;
-}
-
-.nav-link {
-    color: #fff;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #aaa;
 }
 
 .auth-links {

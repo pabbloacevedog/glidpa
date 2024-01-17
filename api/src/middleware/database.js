@@ -10,7 +10,7 @@ console.log(DB_HOST, 'localhost')
 const config = {
 	host: DB_HOST,
 	dialect: 'mysql',
-	logging: process.env.ENV === 'production' ? false : console.log,
+	// logging: process.env.ENV === 'production' ? false : console.log,
 	freezeTableName: true,
 	dialectOptions: {
 		charset: 'utf8',

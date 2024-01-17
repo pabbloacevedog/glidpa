@@ -36,7 +36,7 @@
                     <div v-for="(menuItem, index) in menuList" :key="index">
                         <q-item clickable :active="menuItem.label === 'Outbox'" v-ripple>
                             <q-item-section class="texto-primary">
-                                <a :href="menuItem.link" class="nav-link texto-primary">{{ menuItem.label }}</a>
+                                <a :href="menuItem.link" class="bg-primary texto-primary">{{ menuItem.label }}</a>
 
                             </q-item-section>
                         </q-item>

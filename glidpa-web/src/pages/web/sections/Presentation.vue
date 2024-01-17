@@ -81,7 +81,7 @@ export default {
         margin-top: 2rem;
         font-size: 1.5rem;
     }
-    .btn-prrestentation {
+    .btn-prestentation {
         padding: 0 10%;
         margin-right: 2%;
     }

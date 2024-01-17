@@ -12,79 +12,80 @@
 // to match your app's branding.
 // Tip: Use the "Theme Builder" on Quasar's documentation website.
 
-$primary   : #de1b89;
-$secondary : #1aacac;
-$accent    : #9C27B0;
+$primary: #de1b89;
+$secondary: #1aacac;
+$accent: #9c27b0;
 
-$dark      : #0d1221;
-$dark-page : #040d12;
+$dark: #000000;
+$dark-page: #121212;
 
-$positive  : #22ba75;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+$positive: #22ba75;
+$negative: #c10015;
+$info: #31ccec;
+$warning: #f2c037;
 
 .texto-primary {
-	background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .text-admin {
-    color:#929397;
+    color: #929397;
 }
 .texto-primari {
-	background-color: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
+    background-color: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
 }
 .bg-primary {
-	background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%) !important;
+    background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%) !important;
 }
 .icons .q-tab__content .q-tab__icon {
     width: 30px;
     height: 30px;
     font-size: 2.5rem !important;
 }
-.bg-basico{
+.bg-basico {
     background-image: linear-gradient(148deg, #00dcb4 27.8%, #00accf 67%);
-
 }
-.text-basico{
+.text-basico {
     background-image: linear-gradient(148deg, #00dcb4 27.8%, #00accf 67%);
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
-.bg-profesional{
+.bg-profesional {
     background: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
-
 }
-.text-profesional{
+.text-profesional {
     background-image: linear-gradient(to right, #de1b89 0%, #9c27b0 100%);
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
-.bg-premium{
-    background: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
-
+.bg-premium {
+    background: linear-gradient(-225deg, #ac32e4 0%, #7918f2 48%, #4801ff 100%);
 }
-.text-premium{
-    background-image: linear-gradient(-225deg, #AC32E4 0%, #7918F2 48%, #4801FF 100%);
+.text-premium {
+    background-image: linear-gradient(
+        -225deg,
+        #ac32e4 0%,
+        #7918f2 48%,
+        #4801ff 100%
+    );
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
-.bg-platinum{
-    background-color: #21D4FD;
-    background-image: linear-gradient(124deg, #21D4FD 0%, #B721FF 100%);
-
+.bg-platinum {
+    background-color: #21d4fd;
+    background-image: linear-gradient(124deg, #21d4fd 0%, #b721ff 100%);
 }
-.text-platinum{
-    background-color: #21D4FD;
-    background-image: linear-gradient(124deg, #21D4FD 0%, #B721FF 100%);
+.text-platinum {
+    background-color: #21d4fd;
+    background-image: linear-gradient(124deg, #21d4fd 0%, #b721ff 100%);
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 .links {
     font-size: 1.1rem !important;
 }
-.chip-plan .q-chip__icon{
+.chip-plan .q-chip__icon {
     color: #000 !important;
 }
 .q-notification {
@@ -94,45 +95,87 @@ $warning   : #F2C037;
     -ms-border-radius: 25px !important;
     -o-border-radius: 25px !important;
 }
-.q-drawer--left.q-drawer--bordered {
-    border-right: 1px solid #000000cc !important;
-}
-.q-separator {
-    border: 0;
-    border-right: 1px solid #000000cc !important;
-    margin: 0;
-    transition: background 0.3s, opacity 0.3s;
-    flex-shrink: 0;
-}
-.q-calendar {
-    color: #929397 !important;
-    background: #000000 !important;
-    border-radius: 15px;
-}
-.q-calendar-month__head {
-    border-bottom: #929397 !important;
-    background: #2a2a2a !important;
-}
+// .q-drawer--left.q-drawer--bordered {
+//     border-right: 1px solid #000000cc !important;
+// }
+// .q-separator {
+//     border: 0;
+//     border-right: 1px solid #000000cc !important;
+//     margin: 0;
+//     transition: background 0.3s, opacity 0.3s;
+//     flex-shrink: 0;
+// }
+// .q-calendar {
+//     color: #929397 !important;
+//     background: #000000 !important;
+//     border-radius: 15px;
+// }
+// .q-calendar-month__head {
+//     border-bottom: #929397 !important;
+//     background: #2a2a2a !important;
+// }
 
-.q-calendar-month__week--wrapper {
-    border-bottom: #929397;
+// .q-calendar-month__week--wrapper {
+//     border-bottom: #929397;
+// }
+.q-card {
+    border-radius: 20px !important;
+    -webkit-border-radius: 20px !important;
+    -moz-border-radius: 20px !important;
+    -ms-border-radius: 20px !important;
+    -o-border-radius: 20px !important;
 }
-.card-chart{
-    background: #000 !important;
-    position: relative;
-    color: #929397 !important;
-}
-.card-bg {
-    background-color: #000;
-    border: 1px solid #373737;
-    border-radius: 30px;
-}
+// .card-chart{
+//     background: #000 !important;
+//     position: relative;
+//     color: #929397 !important;
+//     border-radius: 20px;
+// }
+
 .q-field--standout .q-field__control {
     border-radius: 10px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
+}
+
+.body--dark {
+    background-color: #000;
+    color: #929397;
+    .menu-activo {
+        border-radius: 10px;
+        margin: 0px 4px;
+        background-color: #fff;
+    }
+    .q-layout__section--marginal {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .avatar-customer {
+        background-color: #121212;
+        /* Color para el tema oscuro */
+    }
+}
+
+/* Estilos para el tema claro */
+.body--light {
+    background-color: #f2f2f2;
+    color: black;
+    .menu-activo {
+        border-radius: 10px;
+        margin: 0px 4px;
+        background-color: #000;
+    }
+    .q-layout__section--marginal {
+        background-color: #fff;
+        color: #000;
+    }
+    .avatar-customer {
+        background-color: #f2f2f2;
+        /* Color para el tema claro */
+    }
 }
 // $primary   : #1976D2;
 // $secondary : #26A69A;

@@ -4,11 +4,12 @@ import { PORT } from '../config/config.js';
 const { DB_FORCE_RESTART, ENV } = process.env;
 async function syncDatabase() {
     console.info('SETUP - Sincronizando tablas de la base de datos...');
-    const sequelizeOptions = { alter: true };
+    const sequelizeOptions = {};
 	console.info('ENV', DB_FORCE_RESTART, ENV );
     if (DB_FORCE_RESTART === 'true' && ENV !== 'production') {
 		console.info('SETUP - Creando tablas');
-        sequelizeOptions.force = true;
+		// sequelizeOptions.alter = true;
+        // sequelizeOptions.force = true;
     }
 
     await models.sequelize.sync(sequelizeOptions);

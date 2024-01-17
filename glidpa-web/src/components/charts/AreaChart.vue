@@ -1,6 +1,6 @@
 <template>
     <div>
-        <q-card class="no-shadow card-chart" bordered>
+        <q-card class="no-shadow card-chart">
             <q-card-section class="text-h6">
                 Stacked Area Chart
             </q-card-section>

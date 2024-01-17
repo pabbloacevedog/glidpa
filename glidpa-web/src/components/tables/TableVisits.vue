@@ -1,9 +1,9 @@
 <template>
     <div class="row q-col-gutter-sm">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <q-card class="text-admin card-bg" bordered>
-                <q-card-section class="q-pa-none">
-                    <q-table class="no-shadow  bg-black" dark :rows="rows" title="Pregutas Chatbot" :hide-header="mode === 'grid'" style="border-radius: 30px;"
+            <q-card class="text-admin no-shadow">
+                <q-card-section>
+                    <q-table class="no-shadow" :rows="rows" title="Pregutas Chatbot" :hide-header="mode === 'grid'" style="border-radius: 30px;"
                         :columns="columns" row-key="name" :filter="filter" v-model:pagination="pagination">
                         <template v-slot:top-right="props">
                             <q-input  dense standout="bg-primary text-white" debounce="300" v-model="filter" placeholder="Search" dark class="text-white">
@@ -150,9 +150,4 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.card-bg {
-    background-color: #000;
-    border: 1px solid #373737;
-    border-radius: 30px;
-}
 </style>

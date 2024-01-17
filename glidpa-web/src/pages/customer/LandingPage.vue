@@ -1,12 +1,12 @@
 <template>
     <div class="fit row wrap justify-start items-start content-start text-admin " style="overflow: hidden;">
         <div class="col col-md-1 self-start col-xs-12" style="overflow: auto;">
-            <q-card class="no-border-radius bg-black card-border">
-                <q-card-section class="header-editor ">
+            <q-card class="no-border-radius ">
+                <q-card-section class=" ">
                     <div class="text-header">Secciones</div>
                 </q-card-section>
             </q-card>
-            <q-card class="no-border-radius bg-black card-border card-size">
+            <q-card class="no-border-radius  card-size">
                 <q-card-section class="q-px-none">
                     <q-list bordered separator>
                         <q-item clickable v-ripple>
@@ -40,13 +40,13 @@
                 </q-card-section>
             </q-card>
         </div>
-        <div class="col col-md-2 bg-black col-xs-12  bg-black" style="overflow: auto;">
-            <q-card class="no-border-radius bg-black card-border">
-                <q-card-section class="header-editor ">
+        <div class="col col-md-2  col-xs-12  " style="overflow: auto;">
+            <q-card class="no-border-radius  ">
+                <q-card-section class=" ">
                     <div class="text-header"> Muestras </div>
                 </q-card-section>
             </q-card>
-            <q-card class="no-border-radius bg-black card-border card-size">
+            <q-card class="no-border-radius   card-size">
                 <q-card-section class="q-px-none">
                     <q-list bordered separator>
                         <q-item clickable v-ripple>
@@ -65,25 +65,25 @@
                 </q-card-section>
             </q-card>
         </div>
-        <div class="col col-md-6 bg-black col-xs-12" style="overflow: auto;">
-            <q-card class="no-border-radius bg-black  card-border">
-                <q-card-section class="header-editor ">
+        <div class="col col-md-6  col-xs-12" style="overflow: auto;">
+            <q-card class="no-border-radius   ">
+                <q-card-section class=" ">
                     <div class="text-header">Visor</div>
                 </q-card-section>
             </q-card>
-            <q-card class="no-border-radius bg-black card-border  card-size">
-                <q-card-section class="header-editor">
+            <q-card class="no-border-radius    card-size">
+                <q-card-section class="">
                     <div class="text-header"><q-img :src="url" spinner-color="red" style="height: 340px; max-width: 550px" /></div>
                 </q-card-section>
             </q-card>
         </div>
-        <div class="col col-md-3 bg-black col-xs-12" style="overflow: auto;">
-            <q-card class="no-border-radius bg-black  card-border ">
-                <q-card-section class="header-editor">
+        <div class="col col-md-3  col-xs-12" style="overflow: auto;">
+            <q-card class="no-border-radius    ">
+                <q-card-section class="">
                     <div class="text-header">Editor</div>
                 </q-card-section>
             </q-card>
-            <q-card class="no-border-radius bg-black card-border   card-size">
+            <q-card class="no-border-radius     card-size">
                 <q-card-section>
                     <q-list class="row">
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -94,18 +94,18 @@
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.title" label="Título" />
+                                <q-input  standout="bg-primary text-white" color="white" dense v-model="user.title" label="Título" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input dark standout="bg-primary text-white" color="white" type="textarea" dense v-model="user.description"
+                                <q-input  standout="bg-primary text-white" color="white" type="textarea" dense v-model="user.description"
                                     label="Descripción" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input dark standout="bg-primary text-white" color="white" dense v-model="user.button" label="Button" />
+                                <q-input  standout="bg-primary text-white" color="white" dense v-model="user.button" label="Button" />
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -151,20 +151,10 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.header-editor {
-    border: 1px solid rgba(0, 0, 0, 0.8) !important;
-}
 
 .text-header {
     font-size: 0.9rem;
     font-weight: bold;
-}
-.card-border {
-    background-color: #000;
-    border-top: 1px solid #373737;
-    border-right: 1px solid #373737;
-    border-bottom: 1px solid #373737;
-    border-radius: 30px;
 }
 .card-size{
     min-height: 92vh;

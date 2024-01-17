@@ -1,20 +1,23 @@
 <template>
-    <q-page class="q-px-lg bg-black">
-        <q-calendar-month ref="calendar" v-model="selectedDate" animated bordered focusable hoverable no-active-date
-            :day-min-height="140" :day-height="10" @change="onChange" @moved="onMoved" @click-date="onClickDate"
-            @click-day="onClickDay" @click-workweek="onClickWorkweek" @click-head-workweek="onClickHeadWorkweek"
-            @click-head-day="onClickHeadDay">
-            <template #day="{ scope: { timestamp } }">
-                <div v-for="event in eventsMap[timestamp.date]" :key="event.id">
-                    <div :class="badgeClasses(event, 'day')" :style="badgeStyles(event, 'day')" class="my-event">
-                        <abbr :title="event.details" class="tooltip">
-                            <span class="title q-calendar__ellipsis">{{ event.title + (event.time ? ' - ' + event.time : '')
-                            }}</span>
-                        </abbr>
+    <q-page class="q-pa-md">
+        <div class="row q-col-gutter-sm">
+            <q-calendar-month ref="calendar" v-model="selectedDate" animated focusable hoverable no-active-date
+                :day-min-height="140" :day-height="10" @change="onChange" @moved="onMoved" @click-date="onClickDate"
+                @click-day="onClickDay" @click-workweek="onClickWorkweek" @click-head-workweek="onClickHeadWorkweek"
+                @click-head-day="onClickHeadDay">
+                <template #day="{ scope: { timestamp } }">
+                    <div v-for="event in eventsMap[timestamp.date]" :key="event.id">
+                        <div :class="badgeClasses(event, 'day')" :style="badgeStyles(event, 'day')" class="my-event">
+                            <abbr :title="event.details" class="tooltip">
+                                <span class="title q-calendar__ellipsis">{{ event.title + (event.time ? ' - ' + event.time :
+                                    '')
+                                }}</span>
+                            </abbr>
+                        </div>
                     </div>
-                </div>
-            </template>
-        </q-calendar-month>
+                </template>
+            </q-calendar-month>
+        </div>
     </q-page>
 </template>
 

@@ -47,28 +47,36 @@ export async function setupGraphQL(server, httpServer) {
 			res.status(401).send(error.message);
 		}
 	});
-	server.get('/auth/status', authenticateJWT, (req, res, next) => {
+	server.get('/auth/status', authenticateJWT, (req, res) => {
+		// console.log('request.cookies.get', req.cookies)
 		try {
-			// console.log('request.cookies.get', req.cookies.authToken)
-			const { authToken } = req.cookies;
-			if (!authToken) {
+			let authToken;
+			if (req.cookies) {
+				authToken = req.cookies.authToken;
+				jwt.verify(authToken, JWT_SECRET, (err, decoded) => {
+					if (err) {
+						console.log('error', err);
+						return res.json({ isLoggedIn: false });
+					}
+					res.json({ isLoggedIn: true });
+				});
+			} else {
 				return res.json({ isLoggedIn: false });
 			}
+			// }
+			// const authToken = req.cookies ? req.cookies.authToken : null;
+			// if (!authToken) {
+			// 	return res.json({ isLoggedIn: false });
+			// }
 
 			// Verifica la validez del token
-			jwt.verify(authToken, JWT_SECRET, (err, decoded) => {
-				if (err) {
-					console.log('error', err);
-					return res.json({ isLoggedIn: false });
-				}
-				res.json({ isLoggedIn: true });
-			});
+
 		} catch (error) {
 			console.log('error', error);
 			res.status(500).send('Error al verificar el estado de la sesión');
 		}
 	});
-	server.post('/logout', authenticateJWT, (req, res, next) => {
+	server.post('/logout', authenticateJWT, (req, res) => {
 		res.clearCookie('authToken'); // Esto borra la cookie llamada 'authToken'
 		res.json({ message: 'Logout exitoso' });
 	});

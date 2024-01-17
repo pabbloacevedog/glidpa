@@ -1,53 +1,86 @@
 
 <template>
-    <q-page class="q-px-lg">
-        <div class="row q-col-gutter-sm">
-            <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12">
-                <q-card class="card-bg text-white no-shadow" bordered>
-                    <q-card-section class="text-h6 column justify-center q-pl-lg">
-                        <div class="text-h6">Change Password</div>
-                    </q-card-section>
-                    <q-card-section class="q-pa-sm row">
-                        <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+    <q-page class="row q-pa-md">
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+            <q-card class="no-shadow">
+                <q-card-section class="col-lg-7 col-md-7 col-xs-12 col-sm-12 column justify-center q-pl-lg">
+                    <div class="text-h6">Datos Usuario</div>
+                    <div class="text-subtitle2">Completa tus datos personales</div>
+                </q-card-section>
+                <q-card-section>
+                    <q-list class="row">
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                Current Password
+                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.name"
+                                    label="Nombre" />
                             </q-item-section>
                         </q-item>
-                        <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input type="password" dark dense standout="bg-primary text-white" color="white" round
-                                    v-model="password_dict.current_password" label="Current Password" />
+                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.email"
+                                    label="Email" />
                             </q-item-section>
                         </q-item>
-                        <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                New Password
+                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.rut_user"
+                                    label="Rut" />
                             </q-item-section>
                         </q-item>
-                        <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input type="password" dark dense standout="bg-primary text-white" color="white" round
-                                    v-model="password_dict.new_password" label="New Password" />
+                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.personal_phone"
+                                    label="Celular" />
                             </q-item-section>
                         </q-item>
-                        <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <q-item-section>
-                                Confirm New Password
-                            </q-item-section>
-                        </q-item>
-                        <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                            <q-item-section>
-                                <q-input type="password" dark dense standout="bg-primary text-white" round color="white"
-                                    v-model="password_dict.confirm_new_password" label="Confirm New Password" />
-                            </q-item-section>
-                        </q-item>
-                    </q-card-section>
-                    <q-card-actions align="right">
-                        <q-btn rounded class="text-capitalize bg-primary text-white q-ma-lg q-pa-lg">Guardar</q-btn>
-                    </q-card-actions>
-
-                </q-card>
-            </div>
+                    </q-list>
+                </q-card-section>
+            </q-card>
+        </div>
+        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 change-pass">
+            <q-card class="no-shadow">
+                <q-card-section class="text-h6 column justify-center q-pl-lg">
+                    <div class="text-h6">Change Password</div>
+                </q-card-section>
+                <q-card-section class="q-pa-sm row">
+                    <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <q-item-section>
+                            Current Password
+                        </q-item-section>
+                    </q-item>
+                    <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <q-item-section>
+                            <q-input type="password" dense standout="bg-primary " round
+                                v-model="password_dict.current_password" label="Current Password" />
+                        </q-item-section>
+                    </q-item>
+                    <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <q-item-section>
+                            New Password
+                        </q-item-section>
+                    </q-item>
+                    <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <q-item-section>
+                            <q-input type="password" dense standout="bg-primary " round v-model="password_dict.new_password"
+                                label="New Password" />
+                        </q-item-section>
+                    </q-item>
+                    <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <q-item-section>
+                            Confirm New Password
+                        </q-item-section>
+                    </q-item>
+                    <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                        <q-item-section>
+                            <q-input type="password" dense standout="bg-primary " round
+                                v-model="password_dict.confirm_new_password" label="Confirm New Password" />
+                        </q-item-section>
+                    </q-item>
+                </q-card-section>
+                <q-card-actions align="right">
+                    <q-btn rounded class="text-capitalize bg-primary text-white  q-ma-lg q-pa-lg">Guardar</q-btn>
+                </q-card-actions>
+            </q-card>
 
         </div>
     </q-page>
@@ -62,6 +95,7 @@ export default defineComponent({
         return {
             password_dict: {},
             company: {},
+            user: {},
             lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         }
     }
@@ -69,9 +103,21 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.card-bg {
-    background-color: #000;
-    border: 1px solid #373737;
-    border-radius: 30px;
+@media (max-width: 1200px) {
+    .change-pass {
+        padding-left: 20px;
+    }
+}
+@media (min-width: 1201px) {
+    .change-pass {
+        padding-left: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .change-pass {
+        padding-top: 20px;
+        padding-left: 0px;
+    }
 }
 </style>
