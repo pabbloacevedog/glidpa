@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     class Plan extends Model {
         // Aquí podrías agregar asociaciones si son necesarias
 		static associate() {
-            this.belongsTo(sequelize.models.Company, { foreignKey: 'company_id' });
+            this.hasMany(sequelize.models.Company, { foreignKey: 'plan_id' });
             // Otras asociaciones...
         }
     }
@@ -51,7 +51,8 @@ module.exports = (sequelize) => {
     }, {
         sequelize,
         modelName: 'Plan',
-        tableName: 'plan'
+        tableName: 'plan',
+		timestamps: false
         // aquí puedes agregar configuraciones adicionales como timestamps
     });
 

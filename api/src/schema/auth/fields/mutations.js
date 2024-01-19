@@ -1,6 +1,6 @@
 // auth/fields/mutations.js
 
-import { GraphQLString } from 'graphql';
+import { GraphQLString, GraphQLInt } from 'graphql';
 import CustomerType from '../type.js';
 import { authResolver } from '../resolvers.js';
 
@@ -9,7 +9,8 @@ export const customerSignup = {
 	args: {
 		email: { type: GraphQLString },
 		user: { type: GraphQLString },
-		password: { type: GraphQLString }
+		password: { type: GraphQLString },
+		plan_id: { type: GraphQLInt }
 		// ... otros campos necesarios
 	},
 	resolve: authResolver.Mutation.signup

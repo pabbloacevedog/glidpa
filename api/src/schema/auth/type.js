@@ -1,5 +1,5 @@
 // Imports
-import {GraphQLObjectType, GraphQLString} from 'graphql'
+import {GraphQLObjectType, GraphQLString, GraphQLInt} from 'graphql'
 
 // Customer Login type
 const CustomerType = new GraphQLObjectType({
@@ -18,6 +18,9 @@ const CustomerType = new GraphQLObjectType({
         },
 		user: {
 			type: GraphQLString
+		},
+		plan_id: {
+			type: GraphQLInt
 		}
     })
 })

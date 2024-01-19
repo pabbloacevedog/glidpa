@@ -82,6 +82,13 @@ $warning: #f2c037;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+.menu-item {
+    transition: background-color 0.3s, background-image 0.3s;
+}
+
+.menu-item--active {
+    background-color: transparent; /* necesario para que el gradiente sea visible */
+}
 .links {
     font-size: 1.1rem !important;
 }
@@ -95,29 +102,7 @@ $warning: #f2c037;
     -ms-border-radius: 25px !important;
     -o-border-radius: 25px !important;
 }
-// .q-drawer--left.q-drawer--bordered {
-//     border-right: 1px solid #000000cc !important;
-// }
-// .q-separator {
-//     border: 0;
-//     border-right: 1px solid #000000cc !important;
-//     margin: 0;
-//     transition: background 0.3s, opacity 0.3s;
-//     flex-shrink: 0;
-// }
-// .q-calendar {
-//     color: #929397 !important;
-//     background: #000000 !important;
-//     border-radius: 15px;
-// }
-// .q-calendar-month__head {
-//     border-bottom: #929397 !important;
-//     background: #2a2a2a !important;
-// }
 
-// .q-calendar-month__week--wrapper {
-//     border-bottom: #929397;
-// }
 .q-card {
     border-radius: 20px !important;
     -webkit-border-radius: 20px !important;
@@ -125,12 +110,12 @@ $warning: #f2c037;
     -ms-border-radius: 20px !important;
     -o-border-radius: 20px !important;
 }
-// .card-chart{
-//     background: #000 !important;
-//     position: relative;
-//     color: #929397 !important;
-//     border-radius: 20px;
-// }
+.tab-img .q-tab__content {
+    min-width: 200px !important;
+}
+.tab-panel-img .q-panel .q-tab-panel {
+    padding: 1% !important;
+}
 
 .q-field--standout .q-field__control {
     border-radius: 10px;

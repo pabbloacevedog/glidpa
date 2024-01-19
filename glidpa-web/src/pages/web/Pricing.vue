@@ -23,8 +23,8 @@ export default {
         return {
             plans: [
                 {
-                    id: 0,
-                    title: 'Base',
+                    id: 1,
+                    title: 'Básico',
                     price: '19.990',
                     description: 'Perfecto para pymes que solo necesiten automatizar y aumentar sus citas',
                     features: [
@@ -35,7 +35,7 @@ export default {
                     class: 'basico'
                 },
                 {
-                    id: 1,
+                    id: 2,
                     title: 'Profesional',
                     price: '29.990',
                     description: 'Perfecto para pymes que necesiten su página web, automatizar y aumentar sus citas',
@@ -49,7 +49,7 @@ export default {
                     class: 'profesional'
                 },
                 {
-                    id: 2,
+                    id: 3,
                     title: 'Premium',
                     price: '49.990',
                     description: 'Especial para pymes con harto flujo de clientes que neceiten automatizar citas',
@@ -63,7 +63,7 @@ export default {
                     class: 'premium'
                 },
                 {
-                    id: 3,
+                    id: 4,
                     title: 'Platinum',
                     price: '99.990',
                     description: 'Especial para medianas empresas con muchos cliente que necesitan automatizar la reserva de citas',

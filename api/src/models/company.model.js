@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
 			// Asociación con el model Payment
 			this.hasOne(sequelize.models.Payment, { foreignKey: 'company_id' });
 			// Asociación con el model Plan
-			this.hasOne(sequelize.models.Plan, { foreignKey: 'company_id' });
+			this.belongsTo(sequelize.models.Plan, { foreignKey: 'plan_id' });
 			// Asociación con el model Toolbar
 			this.hasOne(sequelize.models.Toolbar, { foreignKey: 'company_id' });
 

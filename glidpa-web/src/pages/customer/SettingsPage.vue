@@ -1,11 +1,12 @@
 
 <template>
     <q-page class="row q-pa-md">
-        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12">
+
+        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 ">
             <q-card class="no-shadow">
                 <q-card-section class="col-lg-7 col-md-7 col-xs-12 col-sm-12 column justify-center q-pl-lg">
                     <div class="text-h6">Datos Usuario</div>
-                    <div class="text-subtitle2">Completa tus datos personales</div>
+                    <div class="text-subtitle2 text-admin  q-pt-xs">Completa tus datos personales</div>
                 </q-card-section>
                 <q-card-section>
                     <q-list class="row">
@@ -21,13 +22,13 @@
                                     label="Email" />
                             </q-item-section>
                         </q-item>
-                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <q-item-section>
                                 <q-input standout="bg-primary text-white" color="white" dense v-model="user.rut_user"
                                     label="Rut" />
                             </q-item-section>
                         </q-item>
-                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <q-item-section>
                                 <q-input standout="bg-primary text-white" color="white" dense v-model="user.personal_phone"
                                     label="Celular" />
@@ -35,53 +36,118 @@
                         </q-item>
                     </q-list>
                 </q-card-section>
-            </q-card>
-        </div>
-        <div class="col-lg-8 col-md-8 col-xs-12 col-sm-12 change-pass">
-            <q-card class="no-shadow">
-                <q-card-section class="text-h6 column justify-center q-pl-lg">
-                    <div class="text-h6">Change Password</div>
-                </q-card-section>
-                <q-card-section class="q-pa-sm row">
-                    <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <q-item-section>
-                            Current Password
-                        </q-item-section>
-                    </q-item>
-                    <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <q-item-section>
-                            <q-input type="password" dense standout="bg-primary " round
-                                v-model="password_dict.current_password" label="Current Password" />
-                        </q-item-section>
-                    </q-item>
-                    <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <q-item-section>
-                            New Password
-                        </q-item-section>
-                    </q-item>
-                    <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <q-item-section>
-                            <q-input type="password" dense standout="bg-primary " round v-model="password_dict.new_password"
-                                label="New Password" />
-                        </q-item-section>
-                    </q-item>
-                    <q-item class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <q-item-section>
-                            Confirm New Password
-                        </q-item-section>
-                    </q-item>
-                    <q-item class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <q-item-section>
-                            <q-input type="password" dense standout="bg-primary " round
-                                v-model="password_dict.confirm_new_password" label="Confirm New Password" />
-                        </q-item-section>
-                    </q-item>
-                </q-card-section>
-                <q-card-actions align="right">
-                    <q-btn rounded class="text-capitalize bg-primary text-white  q-ma-lg q-pa-lg">Guardar</q-btn>
+                <q-card-actions align="right" class="row q-py-none">
+                    <q-btn rounded class="text-capitalize bg-primary text-white q-ma-lg q-pa-lg"
+                        style="min-width: 120px">Guardar</q-btn>
                 </q-card-actions>
             </q-card>
-
+        </div>
+        <div class="col-lg-4 col-md-4 col-xs-12 col-sm-12  change-pass">
+            <q-card class="no-shadow">
+                <q-card-section class="col-lg-7 col-md-7 col-xs-12 col-sm-12 column justify-center q-pl-lg">
+                    <div class="text-h6">Cambiar Password</div>
+                    <div class="text-subtitle2 text-admin q-pt-xs">Actualiza tu contraseña</div>
+                </q-card-section>
+                <q-card-section>
+                    <q-list class="row">
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <q-item-section>
+                                <q-input standout="bg-primary text-white" color="white" dense
+                                    v-model="password_dict.current_password" label="Password actual" />
+                            </q-item-section>
+                        </q-item>
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <q-item-section>
+                                <q-input standout="bg-primary text-white" color="white" dense
+                                    v-model="password_dict.new_password" label="Password nueva" />
+                            </q-item-section>
+                        </q-item>
+                        <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <q-item-section>
+                                <q-input standout="bg-primary text-white" color="white" dense
+                                    v-model="password_dict.confirm_new_password" label="Confirmar password nueva" />
+                            </q-item-section>
+                        </q-item>
+                    </q-list>
+                </q-card-section>
+                <q-card-actions align="right" class="row q-py-none">
+                    <q-btn rounded class="text-capitalize bg-primary text-white q-ma-lg q-pa-lg"
+                        style="min-width: 120px">Guardar</q-btn>
+                </q-card-actions>
+            </q-card>
+        </div>
+        <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12 q-py-md">
+            <q-card class="no-shadow">
+                <q-card-section class="row q-pa-none">
+                    <q-card-section class="col-lg-6 col-md-6 col-sm-12 col-xs-12 flex flex-center flex-column text-center  ">
+                        <q-list class="row">
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-none">
+                                <q-item-section>
+                                    <div class="text-h6">Link de tu Web</div>
+                                    <div class="text-subtitle2 text-admin q-pt-xs">Tu Usuario tambíen es el link de tu web</div>
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pt-lg">
+                                <q-item-section>
+                                    <div class="">
+                                        <q-input standout="bg-primary text-white" color="white" dense v-model="user.user"
+                                            disable readonly label="Usuario y link de la web" />
+                                    </div>
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <div class="text-primary col-lg-6 col-md-6">
+                                        www.glidpa.com/{{ user.user }}
+                                    </div>
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pt-xl">
+                                <q-item-section>
+                                    <div class="">
+                                        <q-btn rounded class="text-capitalize bg-primary text-white"
+                                            style="min-width: 120px">Actualizar</q-btn>
+                                    </div>
+                                </q-item-section>
+                            </q-item>
+                        </q-list>
+                    </q-card-section>
+                    <q-card-section class="col-lg-6 col-md-6 col-sm-12 col-xs-12 flex flex-center flex-column text-center">
+                        <q-list class="row">
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-none">
+                                <q-item-section>
+                                    <div class="text-h5">
+                                        Comparte tu QR
+                                    </div>
+                                    <div class="text-admin  q-pt-xs">
+                                        en tus redes sociales para atraer más clientes
+                                    </div>
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <div class="">
+                                        <q-avatar class="avatar-customer" size="150px" square>
+                                            <img src="@/assets/qr.jpeg" class="q-pa-sm">
+                                        </q-avatar>
+                                    </div>
+                                </q-item-section>
+                            </q-item>
+                            <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <q-item-section>
+                                    <div class="">
+                                        <q-btn rounded class="text-capitalize bg-primary text-white"
+                                            style="min-width: 120px">
+                                            <q-icon left  name="fa-solid fa-share-nodes" />
+                                            <div>Compartir</div>
+                                        </q-btn>
+                                    </div>
+                                </q-item-section>
+                            </q-item>
+                        </q-list>
+                    </q-card-section>
+                </q-card-section>
+            </q-card>
         </div>
     </q-page>
 </template>
@@ -108,6 +174,7 @@ export default defineComponent({
         padding-left: 20px;
     }
 }
+
 @media (min-width: 1201px) {
     .change-pass {
         padding-left: 20px;

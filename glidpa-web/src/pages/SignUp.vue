@@ -33,14 +33,14 @@
                     </q-card-section>
                     <q-card-section class="q-pt-none">
                         <div v-if="$q.platform.is.mobile">
-                            <q-chip dense v-for="plan in plans" :key="plan.id" @click="selectPlan(plan.id, plan.color)"
+                            <q-chip dense v-for="plan in plans" :key="plan.plan_id" @click="selectPlan(plan.plan_id, plan.color)"
                                 clickable class="cursor-pointer chip-plan" :color="plan.color" dark
-                                :icon="selectedPlan === plan.id ? icon_chip : ''" :label="plan.label" />
+                                :icon="selectedPlan === plan.plan_id ? icon_chip : ''" :label="plan.label" />
                         </div>
                         <div v-if="!$q.platform.is.mobile">
-                            <q-chip v-for="plan in plans" :key="plan.id" @click="selectPlan(plan.id, plan.color)" clickable
+                            <q-chip v-for="plan in plans" :key="plan.plan_id" @click="selectPlan(plan.plan_id, plan.color)" clickable
                                 class="cursor-pointer chip-plan" :color="plan.color" dark
-                                :icon="selectedPlan === plan.id ? icon_chip : ''" :label="plan.label" />
+                                :icon="selectedPlan === plan.plan_id ? icon_chip : ''" :label="plan.label" />
                         </div>
                     </q-card-section>
                     <q-card-section>
@@ -126,6 +126,7 @@ export default defineComponent({
             user: '',
             email: '',
             password: '',
+            plan_id:null
         });
 
         const register = async () => {
@@ -164,25 +165,26 @@ export default defineComponent({
                 showError.value = true
             }
         }
-        const selectedPlan = ref(1);
+        const selectedPlan = ref(2);
         const selectedColor = ref('profesional'); // Color inicial por defecto
         const icon_chip = 'fa-solid fa-circle-check';
         const plans = ref([
-            { id: 0, label: 'Básico', color: 'basico' },
-            { id: 1, label: 'Profesional', color: 'profesional' },
-            { id: 2, label: 'Premium', color: 'premium' },
-            { id: 3, label: 'Platinum', color: 'platinum' },
+            { plan_id: 1, label: 'Básico', color: 'basico' },
+            { plan_id: 2, label: 'Profesional', color: 'profesional' },
+            { plan_id: 3, label: 'Premium', color: 'premium' },
+            { plan_id: 4, label: 'Platinum', color: 'platinum' },
         ]);
         const idPlan = ref(props.plan_id);
-        const selectPlan = (id, color) => {
-            selectedPlan.value = id;
+        const selectPlan = (plan_id, color) => {
+            selectedPlan.value = plan_id;
             selectedColor.value = color; // Actualizar el color seleccionado
+            userData.value.plan_id = plan_id
         };
         onMounted(() => {
             if (idPlan.value) {
-                const plan = plans.value.find(p => p.id === Number(idPlan.value));
+                const plan = plans.value.find(p => p.plan_id === Number(idPlan.value));
                 if (plan) {
-                    selectPlan(plan.id, plan.color);
+                    selectPlan(plan.plan_id, plan.color);
                 }
             }
         });

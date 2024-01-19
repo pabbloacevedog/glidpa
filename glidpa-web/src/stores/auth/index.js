@@ -23,6 +23,7 @@ export const useAuthStore = defineStore("auth", {
                         email: Data.email,
                         user: Data.user,
                         password: Data.password,
+                        plan_id: Data.plan_id
                     },
                     operationName: "SignUp"
                 }));
@@ -57,6 +58,7 @@ export const useAuthStore = defineStore("auth", {
                     console.log('Login exitoso');
                     // this.userData = response.data.userData
                     localStorage.setItem("userData", JSON.stringify(response.data.userData));
+                    localStorage.setItem("class_plan", response.data.userData.Company.Plan.class);
                     this.isLoggedIn = true;
                     this.userData = response.data.userData;
                     console.log('response', response);

@@ -15,6 +15,7 @@ const CompanyType = new GraphQLObjectType({
 		city: { type: GraphQLString },
 		address: { type: GraphQLString },
 		google_map_link: { type: GraphQLString },
+		plan_id: { type: GraphQLString },
 		// ... Agrega aquí otros campos según sea necesario
 	})
 });

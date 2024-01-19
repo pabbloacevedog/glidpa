@@ -1,11 +1,10 @@
 <template>
     <q-layout view="hHh lpR fFf">
-        <q-header >
+        <q-header>
             <q-toolbar style="height: 60px;">
                 <q-btn dense flat round icon="menu" @click="drawer = !drawer" />
 
-                <q-toolbar-title  style="padding-left: 3%;" class="cursor-pointer"
-                    v-if="!$q.platform.is.mobile">
+                <q-toolbar-title style="padding-left: 3%;" class="cursor-pointer" v-if="!$q.platform.is.mobile">
                     <q-avatar @click="redirigir">
                         <img src="@/assets/logo.png">
                     </q-avatar>
@@ -20,7 +19,7 @@
                 </q-toolbar-title>
                 <nav class=" navbar">
                     <div class="auth-links">
-                        <q-btn unelevated round icon="fa-solid fa-sun"  @click="toggleTheme"  />
+                        <q-btn unelevated round icon="fa-solid fa-sun" @click="toggleTheme" />
                     </div>
                     <div class="auth-links q-pl-sm">
                         <q-btn rounded color="negative" label="SALIR" @click="handleLogout" />
@@ -28,14 +27,22 @@
                 </nav>
             </q-toolbar>
         </q-header>
-        <!-- <q-drawer v-model="drawer" :width="200" :breakpoint="500" overlay side="left" class="bg-black text-white"> -->
         <q-drawer v-model="drawer" show-if-above :mini="miniState" @mouseover="miniState = false"
             @mouseout="miniState = true" :width="200" :breakpoint="500" class="text-admin">
             <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
                 <q-list>
+                    <!-- <div v-for="(menuItem, index) in menuList" :key="index">
+                        <q-item clickable v-ripple :to="menuItem.link" :class="getMenuItemClass(menuItem)">
+                            <q-item-section avatar>
+                                <q-icon :name="menuItem.icon"></q-icon>
+                            </q-item-section>
+                            <q-item-section>
+                                {{ menuItem.label }}
+                            </q-item-section>
+                        </q-item>
+                    </div> -->
                     <div v-for="(menuItem, index) in menuList" :key="index">
-                        <q-item clickable v-ripple :class="{ 'menu-activo': $route.path === menuItem.link }"
-                            :to="menuItem.link">
+                        <q-item clickable v-ripple :class="getMenuItemClass(menuItem)" :to="menuItem.link" >
                             <q-item-section avatar>
                                 <q-icon :name="menuItem.icon"></q-icon>
                             </q-item-section>
@@ -55,7 +62,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const menuList = [
     {
@@ -101,13 +108,14 @@ const menuList = [
         link: '/settings'
     }
 ]
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useAuthStore } from 'src/stores/auth';
 import { Dark } from 'quasar'
 
 export default {
     setup() {
         const router = useRouter();
+        const route = useRoute();
         const authStore = useAuthStore();
 
         async function handleLogout() {
@@ -119,7 +127,27 @@ export default {
         };
         // Estado inicial del tema basado en el localStorage o por defecto a 'light'
         const theme = ref(localStorage.getItem('theme') || 'light');
+        const classPlan = ref(localStorage.getItem('class_plan'))
+        const path = route.path
+        // const getMenuItemClass = (menuItem) => {
+        //     const clase = 'bg-' + classPlan.value
+        //     const retorno = {
+        //         'menu-activo': path === menuItem.link,
+        //         [clase]: path === menuItem.link
+        //     }
+        //     console.log('retorno', retorno)
+        //     return retorno
+        // }
+        const getMenuItemClass = (menuItem) => {
+            const clase = 'bg-' + classPlan.value
+            const isActive = route.path === menuItem.link;
+            const activeClass = isActive ? clase : ''; // Usa 'primary' para inactivos
 
+            return {
+                'menu-activo': isActive,
+                [activeClass]: true
+            };
+        };
         // Función para cambiar el tema
         const toggleTheme = () => {
             Dark.toggle();
@@ -141,7 +169,9 @@ export default {
             redirigir,
             handleLogout,
             theme,
-            toggleTheme
+            toggleTheme,
+            classPlan,
+            getMenuItemClass,
         }
     }
 }

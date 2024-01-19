@@ -2,7 +2,7 @@
     <q-page class="q-pa-md row ">
         <q-card class="list-border no-shadow">
             <div>
-                <q-tabs v-model="tab" align="justify" inline-label class="q-mb-lg q-pt-md" dense narrow-indicator>
+                <q-tabs v-model="tab" align="center" inline-label class="q-mb-lg q-pt-md" dense narrow-indicator>
                     <q-tab class="text-green" name="new" label="Nuevos" icon="mail">
                         <q-badge v-if="unseenCount > 0" color="red" floating>{{ unseenCount }}</q-badge>
                     </q-tab>
@@ -116,8 +116,8 @@
             </div>
             <div v-else class="message-placeholder">
                 <div>
-                    <q-avatar color="positive"  size="86px">
-                        <q-icon name="chat_bubble"  class="text-light" />
+                    <q-avatar color="positive" size="86px">
+                        <q-icon name="chat_bubble" class="text-light" />
                     </q-avatar>
                     <div class="text-h4 text-light q-pb-sm q-pt-md">Tus mensajes</div>
                     <div class="text-light text-h6 ">Selecciona un mensaje de tu lista para revisar tus mensajes pendientes.
@@ -312,6 +312,7 @@ export default {
     height: 100%;
     text-align: center;
 }
+
 @media (max-width: 600px) {
     .message-space {
         margin: 20px 2px

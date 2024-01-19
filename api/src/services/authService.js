@@ -44,35 +44,54 @@ export async function login(email, password) {
 		attributes: { exclude: ['password'] }, // Excluye la contraseña de los resultados
 		include: [{
 			model: models.Company,
+			include: [{
+				model: models.Plan // Asegúrate de que este modelo esté definido y relacionado correctamente
+			}]
 		}]
 	});
+	// const usuario = await models.User.findOne({
+	// 	where: { email },
+	// 	attributes: { exclude: ['password'] }, // Excluye la contraseña de los resultados
+	// 	include: [{
+	// 		model: models.Company,
+	// 	}]
+	// });
 	// Obtener company_id
 	const companyId = await getCompanyIdByUserId(usuario.user_id);
 	const token = await generarToken(usuario, companyId);
-	return { token, userData: usuario}
+	return { token, userData: usuario }
 }
 
 // Función para registrar un nuevo usuario
-export async function signup(email, user, password) {
-	const usuario = await obtenerUsuario(email);
+export async function signup(email, user, password, plan_id) {
+	try {
+		const usuario = await obtenerUsuario(email);
 
-	if (usuario) {
-		throw new Error(`Ya tenemos un usuario registrado con el email ${email}. Por favor Inicie sesión.`);
+		if (usuario) {
+			throw new Error(`Ya tenemos un usuario registrado con el email ${email}. Por favor Inicie sesión.`);
+		}
+
+		const codigoVerificacion = generarCodigoVerificacion();
+
+		const newUser = await models.User.create({
+			user,
+			email,
+			password, // Asegúrate de que la contraseña se hashea antes de guardarla
+			role_id: 2,
+			verification_code: codigoVerificacion // Almacena el código en la base de datos
+		});
+
+		const newCompany = await createCompany({ user_id: newUser.user_id, plan_id: plan_id });
+
+		// Aquí podrías llamar a la función para enviar el correo de verificación si existe
+		// enviarCorreoVerificacion(email, codigoVerificacion);
+
+		return { message: "Usuario creado con éxito. Por favor valida tu email para continuar." };
+	} catch (error) {
+		// Aquí puedes manejar el error, por ejemplo, devolviendo un mensaje de error.
+		console.error('Signup error:', error);
+		throw new Error('Error al crear el usuario. Por favor intente de nuevo más tarde.');
 	}
-	const codigoVerificacion = generarCodigoVerificacion();
-
-	const newUser = await models.User.create({
-		user,
-		email,
-		password, // La contraseña se hashea automáticamente
-		role_id: 2,
-		verification_code: codigoVerificacion // Almacena el código en la base de datos
-	});
-	console.log('newUser', newUser)
-	const newCompany = await createCompany({ user_id: newUser.user_id });
-	// const token = await generarToken(newUser, newCompany.company_id);
-	// enviarCorreoVerificacion()
-	return { message: "Usuario creado con éxito. Por favor valida tu email para continuar." };
 }
 async function enviarCorreoVerificacion(emailUsuario, codigoVerificacion) {
 	// const transporter = nodemailer.createTransport({
