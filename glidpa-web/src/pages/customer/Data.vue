@@ -27,8 +27,12 @@
                                 <div class="flex justify-end">
                                     <div class="q-mr-md" style="position: relative;">
                                         <!-- Añadido para contener el avatar y el botón -->
-                                        <q-avatar class="avatar-customer" size="150px">
-                                            <img src="@/assets/logo.png" class="q-pa-sm">
+                                        <q-avatar v-if="company.src_logo" class="avatar-customer" size="150px">
+                                            <q-img :src="company.src_logo" class="q-pa-sm" />
+                                        </q-avatar>
+                                        <!-- Añadido para contener el avatar y el botón -->
+                                        <q-avatar v-else class="avatar-customer" size="150px">
+                                            <span :class="' text-' + classPlan" style="font-size: 2.1rem;">Tu Logo</span>
                                         </q-avatar>
                                         <q-btn fab icon="add" :color="classPlan" class="btn-add" size="16px" />
                                     </div>
@@ -206,4 +210,5 @@ export default defineComponent({
     padding: 3px;
     min-height: 20px;
     min-width: 20px;
-}</style>
+}
+</style>

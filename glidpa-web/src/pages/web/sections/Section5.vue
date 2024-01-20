@@ -49,7 +49,7 @@
                             {{ steps.for.description }}
                         </div>
                     </q-card-section>
-                    <div class="q-mt-lg column items-center">
+                    <div class="q-mp-lg column items-center">
                         <q-btn rounded color="primary" label="Comenzar" @click="seePricing" />
                     </div>
                 </q-card>
@@ -124,6 +124,10 @@ export default {
 
 .q-page {
     padding: 2em;
+}
+
+.card-steps {
+    border-color: #000000;
 }
 
 .image-Section5 {

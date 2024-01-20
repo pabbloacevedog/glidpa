@@ -84,6 +84,7 @@ export const useAuthStore = defineStore("auth", {
                 this.userData = null;
                 this.token = null;
                 localStorage.removeItem('userData'); // eliminar datos del usuairo  'userData'
+                localStorage.removeItem("class_plan");
             } catch (error) {
                 console.error('Error durante el logout:', error);
             }

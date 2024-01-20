@@ -6,14 +6,14 @@
 
                 <q-toolbar-title style="padding-left: 3%;" class="cursor-pointer" v-if="!$q.platform.is.mobile">
                     <q-avatar @click="redirigir">
-                        <img src="@/assets/logo.png">
+                        <q-img :src="imageSrc" />
                     </q-avatar>
                     Glidpa IA
                 </q-toolbar-title>
                 <q-toolbar-title @click="redirigir" class="cursor-pointer row justify-center" v-if="$q.platform.is.mobile"
                     style="padding-left: 0%; padding-right: 10%;">
                     <q-avatar>
-                        <img src="@/assets/logo.png">
+                        <q-img :src="imageSrc" />
                     </q-avatar>
                     Glidpa IA
                 </q-toolbar-title>
@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, watch  } from 'vue'
 
 const menuList = [
     {
@@ -147,6 +147,21 @@ export default {
                 Dark.set(savedTheme === 'dark');
             }
         });
+        const imageSrc = ref(''); // Inicialmente vacío
+        async function loadImage(color) {
+            try {
+                const imagePath = `/src/assets/logo-${color}.png`;
+                const imageModule = await import(imagePath);
+                imageSrc.value = imageModule.default;
+            } catch (e) {
+                console.error("Error al cargar la imagen:", e);
+                // Maneja el error según sea necesario
+            }
+        }
+        watch(classPlan, (newValue) => {
+            loadImage(newValue);
+        });
+        loadImage(classPlan.value);
         return {
             drawer: ref(false),
             miniState: ref(true),
@@ -161,7 +176,8 @@ export default {
             classPlan,
             getIconClass,
             getTextClass,
-            getMenuItemClass
+            getMenuItemClass,
+            imageSrc
         }
     }
 }

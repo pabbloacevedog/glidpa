@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="section row section-three q-mt-md">
+    <div class="section row section-three q-mp-md">
         <div class="image-container col-md-7 col-xs-12 q-pa-sm">
             <img src="@/assets/security.jpeg" alt="Data Security">
         </div>

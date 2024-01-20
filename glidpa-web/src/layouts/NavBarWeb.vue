@@ -23,7 +23,10 @@
                         <a href="#about-us" class="nav-link texto-primary">Sobre Nosotros</a>
                         <a href="#contact" class="nav-link texto-primary">Contacto</a>
                     </div>
-                    <div class="auth-links">
+                    <div class="auth-links" v-if="authStore.isLoggedIn">
+                        <q-btn to="/login" rounded color="primary" label="Dahsboard" />
+                    </div>
+                    <div class="auth-links" v-else>
                         <q-btn to="/login" outline rounded color="primary" label="Iniciar Sesión" />
                         <q-btn to="/signup" rounded color="primary" label="Únete" style="padding: 0 30px;" />
                     </div>
@@ -84,10 +87,11 @@ const menuList = [
     }
 ]
 import { useRouter } from 'vue-router';
+import { useAuthStore } from 'src/stores/auth';
 export default {
     setup() {
         const router = useRouter();
-
+        const authStore = useAuthStore();
         const redirigir = () => {
             router.push('/');
         };
@@ -97,7 +101,8 @@ export default {
             toggleLeftDrawer() {
                 drawer.value = !drawer.value
             },
-            redirigir
+            redirigir,
+            authStore
         }
     }
 }

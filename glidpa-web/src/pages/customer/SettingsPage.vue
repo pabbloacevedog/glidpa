@@ -8,30 +8,34 @@
                     <div class="text-h6">Datos Usuario</div>
                     <div class="text-subtitle2 text-admin  q-pt-xs">Completa tus datos personales</div>
                 </q-card-section>
-                <q-card-section>
+                <q-card-section class="q-py-none">
                     <q-list class="row">
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.name"
-                                    label="Nombre" />
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedNombre }"
+                                            @focus="isInputFocusedNombre = true" @blur="isInputFocusedNombre = false" dense v-model="user.name"
+                                    label="Nombre" color="white"/>
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.email"
-                                    label="Email" />
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedEmail }"
+                                            @focus="isInputFocusedEmail = true" @blur="isInputFocusedEmail = false" dense v-model="user.email"
+                                    label="Email" color="white"/>
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.rut_user"
-                                    label="Rut" />
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedRut }"
+                                            @focus="isInputFocusedRut = true" @blur="isInputFocusedRut = false"  dense v-model="user.rut_user"
+                                    label="Rut" color="white"/>
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.personal_phone"
-                                    label="Celular" />
+                                <q-input  filled :class="{ ['bg-' + classPlan]: isInputFocusedTelefono }"
+                                            @focus="isInputFocusedTelefono = true" @blur="isInputFocusedTelefono = false" dense v-model="user.personal_phone"
+                                    label="Celular" color="white"/>
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -48,24 +52,27 @@
                     <div class="text-h6">Cambiar Password</div>
                     <div class="text-subtitle2 text-admin q-pt-xs">Actualiza tu contraseña</div>
                 </q-card-section>
-                <q-card-section>
+                <q-card-section class="q-py-none">
                     <q-list class="row">
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense
-                                    v-model="password_dict.current_password" label="Password actual" />
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedCurrentPass }"
+                                            @focus="isInputFocusedCurrentPass = true" @blur="isInputFocusedCurrentPass = false" dense
+                                    v-model="password_dict.current_password" label="Password actual" color="white"/>
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense
-                                    v-model="password_dict.new_password" label="Password nueva" />
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedNewPass }"
+                                            @focus="isInputFocusedNewPass = true" @blur="isInputFocusedNewPass = false"  dense
+                                    v-model="password_dict.new_password" label="Password nueva" color="white"/>
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense
-                                    v-model="password_dict.confirm_new_password" label="Confirmar password nueva" />
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedConfirmPass }"
+                                            @focus="isInputFocusedConfirmPass = true" @blur="isInputFocusedConfirmPass = false"  dense
+                                    v-model="password_dict.confirm_new_password" label="Confirmar password nueva" color="white"/>
                             </q-item-section>
                         </q-item>
                     </q-list>
@@ -90,8 +97,9 @@
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pt-lg">
                                 <q-item-section>
                                     <div class="">
-                                        <q-input standout="bg-primary text-white" color="white" dense v-model="user.user"
-                                            disable readonly label="Usuario y link de la web" />
+                                        <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedUsuario }"
+                                            @focus="isInputFocusedUsuario = true" @blur="isInputFocusedUsuario = false"  dense v-model="user.user"
+                                            disable readonly label="Usuario y link de la web" color="white"/>
                                     </div>
                                 </q-item-section>
                             </q-item>
@@ -159,7 +167,23 @@ export default defineComponent({
     name: "SettingsPage",
     setup() {
         const classPlan = ref(localStorage.getItem('class_plan'))
+        const isInputFocusedNombre = ref(false);
+        const isInputFocusedEmail = ref(false);
+        const isInputFocusedTelefono = ref(false);
+        const isInputFocusedRut = ref(false);
+        const isInputFocusedUsuario = ref(false);
+        const isInputFocusedCurrentPass = ref(false);
+        const isInputFocusedNewPass = ref(false);
+        const isInputFocusedConfirmPass = ref(false);
         return {
+            isInputFocusedNombre,
+            isInputFocusedEmail,
+            isInputFocusedTelefono,
+            isInputFocusedUsuario,
+            isInputFocusedRut,
+            isInputFocusedCurrentPass,
+            isInputFocusedNewPass,
+            isInputFocusedConfirmPass,
             password_dict: {},
             company: {},
             user: {},

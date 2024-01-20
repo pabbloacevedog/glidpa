@@ -1,5 +1,5 @@
 <template>
-    <q-footer bordered class="bg-black text-white" style="margin-bottom: 3%;">
+    <q-footer class="bg-black text-white" style="padding-bottom: 50px;">
         <div class="row " style="margin-top: 2%; min-height: 120px;padding: 0 10%;">
             <div class="col-3 col-sm-3 links">
                 <div class="row column ">
@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        <q-separator inset color="primary"/>
+        <q-separator inset color="primary" style="height: 8px;border-radius: 50px;" />
         <q-tabs no-caps class="text-white q-mt-lg" v-model="tab">
             <q-tab class="text-white icons" name="facebook" icon="fa-brands fa-facebook" />
             <q-tab class="text-white icons" name="instagram" icon="fa-brands fa-instagram" />

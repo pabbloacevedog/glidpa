@@ -1,51 +1,85 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-    <div class="reviews-container q-mb-xl">
+    <div class="reviews-container q-pa-xl" @mousemove="handleMouseMove">
         <h2 class="texto-primary title-section">Comentarios de nuestros usuarios</h2>
         <div class="q-mb-lg col-8 description-section ">Descubra por qué las empresas aman a nuestros asistentes
             virtuales</div>
-        <div class="row q-gutter-md justify-center">
-            <div class="review-card col-auto col-xs-12 bg-primary">
-                <p>Desde que utilizamos nuestros asistentes de IA, las empresas han experimentado un crecimiento
-                    notable.</p>
-                <div class="rating">★★★★☆</div>
-                <div class="author">John Smith</div>
-                <div class="position">Desarrollador líder, soluciones tecnológicas</div>
+        <div d="gradientBorder" class="row q-gutter-md justify-center">
+            <div class="col-auto col-xs-12 card-wrapper" :style="{ borderRadius: '20px' }">
+                <div class="review-card  " :style="borderStyle">
+                    <div class="author texto-primary">John Smith</div>
+                    <div class="position">Desarrollador líder, soluciones tecnológicas</div>
+                    <div class="rating">★★★★☆</div>
+                    <p>Desde que utilizamos nuestros asistentes de IA, las empresas han experimentado un crecimiento
+                        notable.</p>
+                </div>
             </div>
-            <div class="review-card col-auto col-xs-12 bg-primary">
-                <p>Recomiendo ampliamente a nuestros asistentes de IA para cualquier negocio que busque mejorar.</p>
-                <div class="rating">★★★★★</div>
-                <div class="author">Emily Johnson</div>
-                <div class="position">Product Manager, Growth Co.</div>
+            <div class="col-auto col-xs-12 card-wrapper">
+                <div class="review-card" :style="borderStyle">
+                    <div class="author texto-primary">Emily Johnson</div>
+                    <div class="position">Product Manager, Growth Co.</div>
+                    <div class="rating">★★★★★</div>
+                    <p>Recomiendo ampliamente a nuestros asistentes de IA para cualquier negocio que busque mejorar.</p>
+                </div>
             </div>
-            <div class="review-card col-auto col-xs-12 bg-primary">
-                <p>El éxito de nuestra empresa no sería el mismo sin nuestros asistentes de IA.</p>
-                <div class="rating">★★★★★</div>
-                <div class="author">Alex Thompson</div>
-                <div class="position">CTO, Innovate Corp</div>
+            <div class="col-auto col-xs-12 card-wrapper">
+                <div class="review-card" :style="borderStyle">
+                    <div class="author texto-primary">Alex Thompson</div>
+                    <div class="position">CTO, Innovate Corp</div>
+                    <div class="rating">★★★★★</div>
+                    <p>El éxito de nuestra empresa no sería el mismo sin nuestros asistentes de IA.</p>
+                </div>
             </div>
+
+
         </div>
     </div>
 </template>
 
-<script>
-export default {
-    // You can add methods or data properties if needed
-};
+<script setup>
+//  borderGradient.value = `linear-gradient(${angle + 90}deg,rgba(121,40,202,0)0,#000 20%,#7928ca 50%, #f81ce5 80%)`;
+import { ref, computed } from 'vue';
+
+const borderGradient = ref('linear-gradient(to right, #9c20aa, #fb3570)');
+
+function handleMouseMove(event) {
+    const rect = event.target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    const angle = Math.atan2(y - (rect.height / 2), x - (rect.width / 2)) * (180 / Math.PI);
+    borderGradient.value = `linear-gradient(${angle + 90}deg,rgba(121,40,202,0)0,#000 20%,#7928ca 50%, #f81ce5 80%)`;
+}
+
+const borderStyle = computed(() => ({
+    background: `linear-gradient(#000 0 0) padding-box, ${borderGradient.value} border-box`,
+    border: '1px solid transparent',
+    borderRadius: '15px',
+}));
 </script>
 
 <style scoped>
 .reviews-container {
     text-align: center;
+    background: #000;
+    min-height: 80vh;
+}
+
+.card-wrapper {
+    border-radius: 20px;
+    /* Ajusta el valor del border-radius como desees */
+    max-width: 300px;
+    overflow: hidden;
+    /* Esto asegura que el contenido interno también siga la curvatura */
 }
 
 .review-card {
     background: #000;
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 30px !important;
     color: #FFF;
-    max-width: 300px;
-    border: #de1b89 solid 1px;
+    min-width: 300px;
+    min-height: 270px;
+    border: solid 1px transparent;
 }
 
 .rating {

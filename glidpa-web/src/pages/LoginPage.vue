@@ -189,6 +189,7 @@ export default defineComponent({
     backdrop-filter: blur(5px);
     border-radius: 0px !important;
     height: 100vh !important;
+    border-color: #000000;
 }
 
 .input-login {

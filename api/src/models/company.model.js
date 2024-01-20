@@ -64,6 +64,9 @@ module.exports = (sequelize) => {
 				isEmail: true // Valida que el campo sea un correo electrónico
 			}
 		},
+		src_logo: { // Corrección de nombre
+			type: Sequelize.STRING(255)
+		},
 		company_phone: { // Corrección de nombre
 			type: Sequelize.STRING(20),
 			validate: {
