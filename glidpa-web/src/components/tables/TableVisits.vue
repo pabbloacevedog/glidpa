@@ -6,7 +6,8 @@
                     <q-table class="no-shadow" :rows="rows" title="Pregutas Chatbot" :hide-header="mode === 'grid'" style="border-radius: 30px;"
                         :columns="columns" row-key="name" :filter="filter" v-model:pagination="pagination">
                         <template v-slot:top-right="props">
-                            <q-input  dense standout="bg-primary text-white" debounce="300" v-model="filter" placeholder="Search" dark class="text-white">
+                            <q-input  filled :class="{ ['bg-' + classPlan]: isInputFocusedSearch }"
+                                            @focus="isInputFocusedSearch = true" @blur="isInputFocusedSearch = false" dense debounce="300" v-model="filter" placeholder="Search" class="text-white">
                                 <template v-slot:append>
                                     <q-icon name="search" />
                                 </template>
@@ -18,7 +19,7 @@
                                 </q-tooltip>
                             </q-btn>
 
-                            <q-btn color="primary" icon-right="archive" rounded label="Export to csv" no-caps
+                            <q-btn :color="classPlan" icon-right="archive" rounded label="Export to csv" no-caps
                                 @click="exportTable" />
                         </template>
                     </q-table>
@@ -110,8 +111,11 @@ export default defineComponent({
     setup() {
         const $q = useQuasar()
         const filter = ref('')
-
+        const classPlan = ref(localStorage.getItem('class_plan'))
+        const isInputFocusedSearch = ref(false);
         return {
+            classPlan,
+            isInputFocusedSearch,
             filter,
             mode: 'list',
             columns,

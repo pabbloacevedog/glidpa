@@ -17,7 +17,7 @@
                                 <q-item v-for="contact in newContacts" :key="contact.id" class="q-ma-md " clickable v-ripple
                                     @click="selectContact(contact)">
                                     <q-item-section avatar>
-                                        <q-avatar color="primary" class="text-white">
+                                        <q-avatar :color="classPlan" class="text-white">
                                             {{ getFirstLetter(contact.name) }}
                                         </q-avatar>
                                     </q-item-section>
@@ -39,7 +39,7 @@
                                 <q-item v-for="contact in oldContacts" :key="contact.id" class="q-ma-md" clickable v-ripple
                                     @click="selectContact(contact)">
                                     <q-item-section avatar>
-                                        <q-avatar color="primary">
+                                        <q-avatar :color="classPlan">
                                             {{ getFirstLetter(contact.name) }}
                                         </q-avatar>
                                     </q-item-section>
@@ -97,7 +97,7 @@
                 <q-card-section class="spacer">
                     <q-item>
                         <q-item-section avatar>
-                            <q-avatar color="primary">
+                            <q-avatar :color="classPlan">
                                 <i class="fa-brands fa-instagram text-white"></i>
                             </q-avatar>
                         </q-item-section>
@@ -254,6 +254,7 @@ const contactos = [{
 
 export default {
     setup() {
+        const classPlan = ref(localStorage.getItem('class_plan'))
         const selectedContact = ref(null); // Inicialmente, ningún contacto está seleccionado
         const selectContact = (contact) => {
             selectedContact.value = contact;
@@ -273,6 +274,7 @@ export default {
             return contacts.value.filter(contact => contact.seen);
         });
         return {
+            classPlan,
             contacts,
             selectedContact,// Inicialmente, ningún contacto está seleccionado
             selectContact,

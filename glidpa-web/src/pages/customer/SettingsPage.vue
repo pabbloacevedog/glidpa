@@ -37,7 +37,7 @@
                     </q-list>
                 </q-card-section>
                 <q-card-actions align="right" class="row q-py-none">
-                    <q-btn rounded class="text-capitalize bg-primary text-white q-ma-lg q-pa-lg"
+                    <q-btn rounded :class="'text-capitalize  text-white q-ma-lg q-pa-lg bg-' + classPlan"
                         style="min-width: 120px">Guardar</q-btn>
                 </q-card-actions>
             </q-card>
@@ -71,7 +71,7 @@
                     </q-list>
                 </q-card-section>
                 <q-card-actions align="right" class="row q-py-none">
-                    <q-btn rounded class="text-capitalize bg-primary text-white q-ma-lg q-pa-lg"
+                    <q-btn rounded :class="'text-capitalize  text-white q-ma-lg q-pa-lg bg-' + classPlan"
                         style="min-width: 120px">Guardar</q-btn>
                 </q-card-actions>
             </q-card>
@@ -97,7 +97,7 @@
                             </q-item>
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
-                                    <div class="text-primary col-lg-6 col-md-6">
+                                    <div  :class="' col-lg-6 col-md-6 text-' + classPlan">
                                         www.glidpa.com/{{ user.user }}
                                     </div>
                                 </q-item-section>
@@ -105,7 +105,7 @@
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pt-xl">
                                 <q-item-section>
                                     <div class="">
-                                        <q-btn rounded class="text-capitalize bg-primary text-white"
+                                        <q-btn rounded :class="'text-capitalize  text-white bg-' + classPlan"
                                             style="min-width: 120px">Actualizar</q-btn>
                                     </div>
                                 </q-item-section>
@@ -136,7 +136,7 @@
                             <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <q-item-section>
                                     <div class="">
-                                        <q-btn rounded class="text-capitalize bg-primary text-white"
+                                        <q-btn rounded :class="'text-capitalize  text-white bg-' + classPlan"
                                             style="min-width: 120px">
                                             <q-icon left  name="fa-solid fa-share-nodes" />
                                             <div>Compartir</div>
@@ -153,15 +153,17 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
     name: "SettingsPage",
     setup() {
+        const classPlan = ref(localStorage.getItem('class_plan'))
         return {
             password_dict: {},
             company: {},
             user: {},
+            classPlan,
             lorem: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
         }
     }

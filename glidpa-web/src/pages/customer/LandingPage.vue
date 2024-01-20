@@ -11,59 +11,66 @@
                     <q-list class="row">
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-uploader style="max-width: 200px" url="http://localhost:4444/upload"
+                                <q-uploader :color="classPlan" :class="'bg-' + classPlan" style="max-width: 200px" url="http://localhost:4444/upload"
                                     label="Imagen sección" multiple :filter="checkFileType" @rejected="onRejected" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.title"
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedTitulo }"
+                                            @focus="isInputFocusedTitulo = true" @blur="isInputFocusedTitulo = false" dense v-model="user.title" color="white"
                                     label="Título" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" type="textarea" dense
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedDescripcion }"
+                                            @focus="isInputFocusedDescripcion = true" @blur="isInputFocusedDescripcion = false" dense type="textarea" color="white"
                                     v-model="user.description" label="Descripción" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.button"
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedTituloBtn }"
+                                            @focus="isInputFocusedTituloBtn = true" @blur="isInputFocusedTituloBtn = false" dense v-model="user.button" color="white"
                                     label="Titulo botón" />
                             </q-item-section>
                         </q-item>
                         <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <q-item-section>
-                                <q-input standout="bg-primary text-white" color="white" dense v-model="user.button"
+                                <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedLinkBtn }"
+                                            @focus="isInputFocusedLinkBtn = true" @blur="isInputFocusedLinkBtn = false" dense v-model="user.button" color="white"
                                     label="Link botón" />
                             </q-item-section>
                         </q-item>
                     </q-list>
                 </q-card-section>
+                <q-card-actions align="right" class="row q-py-none">
+                    <q-btn rounded :class="'text-capitalize  text-white q-ma-lg q-pa-lg bg-' + classPlan"
+                        style="min-width: 120px">Guardar</q-btn>
+                </q-card-actions>
             </div>
         </q-card>
         <q-card class="list-border q-ml-md no-shadow col ">
             <div>
-                <q-tabs v-model="tab" align="center" inline-label class="q-pt-md" dense narrow-indicator
-                    active-color="primary">
-                    <q-tab name="1" label="Toolbar" @click="refresh"></q-tab>
-                    <q-tab name="2" label="Home" @click="refresh"></q-tab>
-                    <q-tab name="3" label="Sección 1" @click="refresh"></q-tab>
-                    <q-tab name="4" label="Sección 2" @click="refresh"></q-tab>
-                    <q-tab name="5" label="Sección 3" @click="refresh"></q-tab>
-                    <q-tab name="6" label="Sección 4" @click="refresh"></q-tab>
-                    <q-tab name="7" label="Contacto" @click="refresh"></q-tab>
-                    <q-tab name="8" label="Servicios" @click="refresh"></q-tab>
-                    <q-tab name="9" label="Galería" @click="refresh"></q-tab>
-                    <q-tab name="10" label="Footer" @click="refresh"></q-tab>
+                <q-tabs v-model="tab" align="center" inline-label :color="classPlan" dense narrow-indicator >
+                    <q-tab name="1" @click="refresh" :color="classPlan"> <span :class="' text-' + classPlan">Toolbar</span></q-tab>
+                    <q-tab name="2" @click="refresh"><span :class="' text-' + classPlan">Home</span></q-tab>
+                    <q-tab name="3" @click="refresh"><span :class="' text-' + classPlan">Sección 1</span></q-tab>
+                    <q-tab name="4" @click="refresh"><span :class="' text-' + classPlan">Sección 2</span></q-tab>
+                    <q-tab name="5" @click="refresh"><span :class="' text-' + classPlan">Sección 3</span></q-tab>
+                    <q-tab name="6" @click="refresh"><span :class="' text-' + classPlan">Sección 4</span></q-tab>
+                    <q-tab name="7" @click="refresh"><span :class="' text-' + classPlan">Contacto</span></q-tab>
+                    <q-tab name="8" @click="refresh"><span :class="' text-' + classPlan">Servicios</span></q-tab>
+                    <q-tab name="9" @click="refresh"><span :class="' text-' + classPlan">Galería</span></q-tab>
+                    <q-tab name="10" @click="refresh"><span :class="' text-' + classPlan">Footer</span></q-tab>
                 </q-tabs>
                 <div class="q-gutter-y-sm">
                     <q-tab-panels v-model="tab" animated transition-prev="fade" transition-next="fade"
                         class="text-center tab-panel-img q-pa-none">
                         <q-tab-panel name="1">
                             <q-tabs v-model="tab_toolbar" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="11" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="12" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -91,7 +98,7 @@
                         </q-tab-panel>
                         <q-tab-panel name="2">
                             <q-tabs v-model="tab_home" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="21" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="22" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -119,7 +126,7 @@
                         </q-tab-panel>
                         <q-tab-panel name="3">
                             <q-tabs v-model="tab_s1" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="31" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="32" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -149,7 +156,7 @@
                         </q-tab-panel>
                         <q-tab-panel name="4">
                             <q-tabs v-model="tab_s2" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="41" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="42" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -179,7 +186,7 @@
                         </q-tab-panel>
                         <q-tab-panel name="5">
                             <q-tabs v-model="tab_s3" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="51" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="52" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -209,7 +216,7 @@
                         </q-tab-panel>
                         <q-tab-panel name="6">
                             <q-tabs v-model="tab_s4" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="61" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="62" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -239,7 +246,7 @@
                         </q-tab-panel>
                         <q-tab-panel name="7">
                             <q-tabs v-model="tab_contacto" align="center" inline-label class="" dense narrow-indicator
-                                active-color="primary">
+                                :class="'text-' + classPlan">
                                 <q-tab name="71" class="tab-img"><q-img :src="url" spinner-color="red"
                                         style="height: 100px; max-width: 120px"></q-img></q-tab>
                                 <q-tab name="72" class="tab-img"><q-img :src="url" spinner-color="red"
@@ -287,6 +294,7 @@ import { useQuasar } from 'quasar'
 export default defineComponent({
     name: "LandingPage",
     setup() {
+        const classPlan = ref(localStorage.getItem('class_plan'))
         const url = ref('https://picsum.photos/500/300')
         const $q = useQuasar()
 
@@ -306,8 +314,17 @@ export default defineComponent({
                 message: `${rejectedEntries.length} file(s) did not pass validation constraints`
             })
         }
+        const isInputFocusedTitulo = ref(false);
+        const isInputFocusedTituloBtn = ref(false);
+        const isInputFocusedLinkBtn = ref(false);
+        const isInputFocusedDescripcion = ref(false);
         return {
             user: {},
+            classPlan,
+            isInputFocusedTitulo,
+            isInputFocusedTituloBtn,
+            isInputFocusedLinkBtn,
+            isInputFocusedDescripcion,
             url,
             checkFileSize,
             checkFileType,

@@ -31,22 +31,12 @@
             @mouseout="miniState = true" :width="200" :breakpoint="500" class="text-admin">
             <q-scroll-area class="fit" :horizontal-thumb-style="{ opacity: 0 }">
                 <q-list>
-                    <!-- <div v-for="(menuItem, index) in menuList" :key="index">
+                    <div v-for="(menuItem, index) in menuList" :key="index">
                         <q-item clickable v-ripple :to="menuItem.link" :class="getMenuItemClass(menuItem)">
                             <q-item-section avatar>
-                                <q-icon :name="menuItem.icon"></q-icon>
+                                <q-icon :name="menuItem.icon" :color="getIconClass(menuItem)" />
                             </q-item-section>
-                            <q-item-section>
-                                {{ menuItem.label }}
-                            </q-item-section>
-                        </q-item>
-                    </div> -->
-                    <div v-for="(menuItem, index) in menuList" :key="index">
-                        <q-item clickable v-ripple :class="getMenuItemClass(menuItem)" :to="menuItem.link" >
-                            <q-item-section avatar>
-                                <q-icon :name="menuItem.icon"></q-icon>
-                            </q-item-section>
-                            <q-item-section>
+                            <q-item-section :class="getTextClass(menuItem)">
                                 {{ menuItem.label }}
                             </q-item-section>
                         </q-item>
@@ -128,26 +118,24 @@ export default {
         // Estado inicial del tema basado en el localStorage o por defecto a 'light'
         const theme = ref(localStorage.getItem('theme') || 'light');
         const classPlan = ref(localStorage.getItem('class_plan'))
-        const path = route.path
-        // const getMenuItemClass = (menuItem) => {
-        //     const clase = 'bg-' + classPlan.value
-        //     const retorno = {
-        //         'menu-activo': path === menuItem.link,
-        //         [clase]: path === menuItem.link
-        //     }
-        //     console.log('retorno', retorno)
-        //     return retorno
-        // }
         const getMenuItemClass = (menuItem) => {
-            const clase = 'bg-' + classPlan.value
+            const clase = 'text-' + classPlan.value
             const isActive = route.path === menuItem.link;
             const activeClass = isActive ? clase : ''; // Usa 'primary' para inactivos
 
             return {
                 'menu-activo': isActive,
-                [activeClass]: true
+                // [activeClass]: true
             };
         };
+        const getTextClass = (menuItem) => {
+            const isActive = route.path === menuItem.link;
+            return isActive ? `text-${classPlan.value}` : '';
+        }
+        const getIconClass = (menuItem) => {
+            const isActive = route.path === menuItem.link;
+            return isActive ? `${classPlan.value}` : '';
+        }
         // Función para cambiar el tema
         const toggleTheme = () => {
             Dark.toggle();
@@ -171,7 +159,9 @@ export default {
             theme,
             toggleTheme,
             classPlan,
-            getMenuItemClass,
+            getIconClass,
+            getTextClass,
+            getMenuItemClass
         }
     }
 }
