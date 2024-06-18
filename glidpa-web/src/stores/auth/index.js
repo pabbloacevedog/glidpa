@@ -1,10 +1,8 @@
 import { defineStore } from "pinia";
 import { useMutation } from "@vue/apollo-composable";
+import { setLocalStorage } from '@utils/encriptLocal'
 import { api } from 'boot/axios'
-import {
-    CREATE_CUSTOMER_MUTATION,
-    CUSTOMER_LOGIN_MUTATION,
-} from "./graphql/mutations";
+import { CREATE_CUSTOMER_MUTATION } from "./graphql/mutations";
 import { watch } from 'vue';
 export const useAuthStore = defineStore("auth", {
     state: () => ({
@@ -57,14 +55,16 @@ export const useAuthStore = defineStore("auth", {
                 if (response) {
                     console.log('Login exitoso');
                     // this.userData = response.data.userData
-                    localStorage.setItem("userData", JSON.stringify(response.data.userData));
+                    // localStorage.setItem("userData", JSON.stringify(response.data.userData));
+                    localStorage.setItem("email", JSON.stringify(response.data.userData.email));
+                    localStorage.setItem("name", JSON.stringify(response.data.userData.name));
+                    localStorage.setItem("user", JSON.stringify(response.data.userData.user));
                     localStorage.setItem("class_plan", response.data.userData.Company.Plan.class);
                     this.isLoggedIn = true;
                     this.userData = response.data.userData;
+                    setLocalStorage('IDC',response.data.userData.Company.company_id)
+                    setLocalStorage('IDU',response.data.userData.user_id)
                     console.log('response', response);
-                    // Si necesitas el token en el cliente, aquí podrías extraerlo de la respuesta
-                    // const data = await response.json();
-                    // this.token = data.token; // Asegúrate de que el path aquí sea correcto
                 } else {
                     // Manejo de errores de respuesta
                     throw new Error('Error en el login');
@@ -83,7 +83,11 @@ export const useAuthStore = defineStore("auth", {
                 this.isLoggedIn = false;
                 this.userData = null;
                 this.token = null;
-                localStorage.removeItem('userData'); // eliminar datos del usuairo  'userData'
+                localStorage.removeItem('email'); // eliminar datos del email
+                localStorage.removeItem('name'); // eliminar datos del name
+                localStorage.removeItem('user'); // eliminar datos del user
+                localStorage.removeItem('IDC'); // eliminar datos del company_id
+                localStorage.removeItem('IDU'); // eliminar datos del user_id ç
                 localStorage.removeItem("class_plan");
             } catch (error) {
                 console.error('Error durante el logout:', error);

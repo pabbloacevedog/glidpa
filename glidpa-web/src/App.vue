@@ -12,7 +12,9 @@ export default defineComponent({
     name: 'App',
     setup() {
         const authStore = useAuthStore();
-
+        async function handleLogout() {
+            await authStore.logout();
+        }
         onMounted(() => {
             api.get('/auth/status', { withCredentials: true })
                 .then(response => {
@@ -21,9 +23,13 @@ export default defineComponent({
                         authStore.isLoggedIn = response.data.isLoggedIn;
                         // Configura cualquier otro estado necesario
                     }
+                    else{
+                        handleLogout()
+                    }
                 })
                 .catch(error => {
                     console.error('Error al verificar el estado de la sesión:', error);
+                    handleLogout()
                     // router.push('/login');
                 });
         });

@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import { ref, onMounted, watch  } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 
 const menuList = [
     {
@@ -150,9 +150,12 @@ export default {
         const imageSrc = ref(''); // Inicialmente vacío
         async function loadImage(color) {
             try {
-                const imagePath = `/src/assets/logo-${color}.png`;
-                const imageModule = await import(imagePath);
-                imageSrc.value = imageModule.default;
+                // const imagePath = `/src/assets/logo-${color}.png`;
+                // const imageModule = await import(imagePath);
+                const imagePath = `/assets/logo-${color}.png`;
+                imageSrc.value = imagePath;
+
+                // imageSrc.value = imageModule.default;
             } catch (e) {
                 console.error("Error al cargar la imagen:", e);
                 // Maneja el error según sea necesario

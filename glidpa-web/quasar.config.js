@@ -107,6 +107,7 @@ module.exports = configure(function (/* ctx */) {
                 };
                 Object.assign(viteConf.resolve.alias, {
                     "@": path.join(__dirname, './src'),
+                    "@utils": path.join(__dirname, './src/utils'),
                     "@components": path.join(__dirname, './src/components'),
                     "@pages": path.join(__dirname, './src/pages'),
                 })

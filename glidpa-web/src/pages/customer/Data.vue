@@ -27,7 +27,7 @@
                                 <div class="flex justify-end">
                                     <div class="q-mr-md" style="position: relative;">
                                         <!-- Añadido para contener el avatar y el botón -->
-                                        <q-avatar v-if="company.src_logo" class="avatar-customer" size="150px">
+                                        <q-avatar v-if="company && company.src_logo" class="avatar-customer" size="150px">
                                             <q-img :src="company.src_logo" class="q-pa-sm" />
                                         </q-avatar>
                                         <!-- Añadido para contener el avatar y el botón -->
@@ -67,8 +67,8 @@
                                     <q-item-section>
                                         <q-input filled :class="{ ['bg-' + classPlan]: isInputFocusedUsuario }"
                                             @focus="isInputFocusedUsuario = true" @blur="isInputFocusedUsuario = false"
-                                            dense v-model="user.user" disable readonly label="Usuario y link de la web"
-                                            color="white" />
+                                            dense v-model="company.user_id" disable readonly
+                                            label="Usuario y link de la web" color="white" />
                                     </q-item-section>
                                 </q-item>
                                 <q-item class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -112,7 +112,7 @@
                         </q-card-section>
                         <q-card-actions align="right">
                             <q-btn rounded :class="'text-capitalize  text-white q-ma-lg q-pa-lg bg-' + classPlan"
-                                style="min-width: 120px">Guardar</q-btn>
+                                @click="updateCompanyData" style="min-width: 120px">Guardar</q-btn>
                         </q-card-actions>
                     </q-card>
                 </q-expansion-item>
@@ -166,11 +166,29 @@
 </template>
 
 <script>
-import { defineComponent, ref, watchEffect } from 'vue'
-
+import { defineComponent, ref, onMounted, watch } from 'vue'
+import { useCompanyStore } from 'stores/company';
+import { getLocalStorage } from '@utils/encriptLocal'
 export default defineComponent({
     name: "UserProfile",
     setup() {
+        const companyStore = useCompanyStore();
+        const company = ref({});
+        watch(async () => {
+            let company_id = await getLocalStorage('IDC');
+            console.log('IDC', company_id);
+            if (company_id) {
+                await companyStore.fetchCompany(company_id); // Obtener datos de la empresa
+                company.value = companyStore.companyData // Obtener datos de la empresa
+                console.log('Company data:', company.value);
+            }
+            
+        });
+
+        const updateCompanyData = async () => {
+            await companyStore.updateCompany(company.value); // Actualizar datos de la empresa
+            // Manejo de respuestas exitosas y errores
+        };
         const classPlan = ref(localStorage.getItem('class_plan'))
 
         const isInputFocusedNombre = ref(false);
@@ -184,7 +202,8 @@ export default defineComponent({
         const isInputFocusedDescripcion = ref(false);
         return {
             user: {},
-            company: {},
+            company,
+            updateCompanyData,
             classPlan,
             isInputFocusedNombre,
             isInputFocusedEmail,

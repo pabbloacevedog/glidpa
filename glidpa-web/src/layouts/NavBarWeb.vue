@@ -24,7 +24,7 @@
                         <a href="#contact" class="nav-link texto-primary">Contacto</a>
                     </div>
                     <div class="auth-links" v-if="authStore.isLoggedIn">
-                        <q-btn to="/login" rounded color="primary" label="Dahsboard" />
+                        <q-btn to="/dahsboard" rounded color="primary" label="Dahsboard" />
                     </div>
                     <div class="auth-links" v-else>
                         <q-btn to="/login" outline rounded color="primary" label="Iniciar Sesión" />
